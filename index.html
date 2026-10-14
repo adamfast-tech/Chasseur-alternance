@@ -3,81 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Générateur de recherches d'alternance en événementiel et hôtellerie de luxe.">
+<meta name="description" content="Générateur de recherches d'alternance et d'emploi en événementiel et hôtellerie de luxe.">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Chasseur">
-<meta name="theme-color" content="#fbf7ef">
+<meta name="theme-color" content="#fbf7ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1915" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Chasseur">
+<meta property="og:title" content="Chasseur d'alternance & de job — événementiel & luxe">
+<meta property="og:description" content="Mots-clés, ville, plateformes : l'outil fabrique les recherches d'alternance et d'emploi en événementiel et hôtellerie de luxe.">
+<meta property="og:url" content="https://chasseur-alternance.online/">
+<meta property="og:image" content="https://chasseur-alternance.online/icon-512.png">
+<link rel="canonical" href="https://chasseur-alternance.online/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Chasseur d'alternance — événementiel &amp; hôtellerie de luxe</title>
 <style>
   :root{
-    --cream:#fbf7ef; --cream-deep:#f3ebdc; --paper:#fffdf9;
-    --ink:#2a2620; --ink-soft:#6d6355;
-    --brass:#a8894f; --brass-deep:#8a6c34; --brass-pale:#e6d7b8;
-    --shadow:rgba(120,96,54,.16);
-    --sage:#6f8a63; --sage-deep:#4f6b4a; --sage-pale:#dfe8d7; --sage-wash:#f1f5ec;
+    --cream:#fbf7ef; --cream-deep:#f3ebdc; --paper:#fffdf9; --paper-hi:#fffdf9; --glow:#fffdf9;
+    --ink:#2a2620; --ink-soft:#6d6355; --muted:#a1957f; --faint:#b0a48d; --placeholder:#b3a893;
+    --brass:#a8894f; --brass-hi:#b99a5f; --brass-deep:#8a6c34; --brass-pale:#e6d7b8; --on-brass:#fffdf9;
+    --wash:#fdf7e9; --badge:#f6eeda;
+    --shadow:rgba(120,96,54,.16); --shadow-strong:rgba(120,96,54,.42); --glow-brass:rgba(138,108,52,.7);
+    --sage:#6f8a63; --sage-deep:#4f6b4a; --sage-pale:#dfe8d7; --sage-wash:#f1f5ec; --sage-muted:#93a58a;
+    --on-sage:#fffdf9; --sage-shadow:rgba(79,107,74,.35);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --cream:#1c1915; --cream-deep:#14120f; --paper:#25211b; --paper-hi:#2b261f; --glow:#2e2820;
+      --ink:#efe6d5; --ink-soft:#b8ac96; --muted:#8f846f; --faint:#857a65; --placeholder:#7d735f;
+      --brass:#b8995c; --brass-hi:#dcc08a; --brass-deep:#cdae70; --brass-pale:#4a4031; --on-brass:#1c1915;
+      --wash:#2b2519; --badge:#352d1f;
+      --shadow:rgba(0,0,0,.45); --shadow-strong:rgba(0,0,0,.65); --glow-brass:rgba(0,0,0,.55);
+      --sage:#7f9c72; --sage-deep:#a3c294; --sage-pale:#2f3a2a; --sage-wash:#1f271c; --sage-muted:#7f9573;
+      --on-sage:#14120f; --sage-shadow:rgba(0,0,0,.4);
+    }
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    background:radial-gradient(1200px 600px at 50% -10%, #fffdf9 0%, var(--cream) 55%, var(--cream-deep) 100%);
+    background:var(--cream) radial-gradient(1200px 600px at 50% -10%, var(--glow) 0%, var(--cream) 55%, var(--cream-deep) 100%);
     background-attachment:fixed;
     color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.6;
     padding:28px 16px 70px;-webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:820px;margin:0 auto}
   .eyebrow{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-deep)}
+  [hidden]{display:none!important}
 
-  header{background:var(--paper);border:1px solid var(--brass-pale);border-radius:3px;padding:38px 30px 32px;
+  header{background:var(--paper);border:1px solid var(--brass-pale);border-radius:3px;padding:38px 30px 30px;
     text-align:center;box-shadow:0 18px 40px -24px var(--shadow);position:relative}
   header:before,header:after{content:"";position:absolute;left:30px;right:30px;height:1px;background:var(--brass-pale)}
   header:before{top:16px} header:after{bottom:16px}
   h1{font-weight:400;font-size:40px;line-height:1.08;margin:14px 0 10px;letter-spacing:-.015em}
   h1 em{font-style:italic;color:var(--brass-deep)}
   .rule-orn{color:var(--brass);letter-spacing:.5em;font-size:12px;margin:6px 0 12px}
-  header p{margin:0 auto;max-width:46ch;color:var(--ink-soft);font-size:15px}
+  header p{margin:0 auto;max-width:48ch;color:var(--ink-soft);font-size:15px}
+
+  /* bascule alternance / job */
+  .modes{display:inline-flex;gap:4px;margin:22px auto 4px;padding:4px;border:1px solid var(--brass-pale);border-radius:999px;background:var(--cream)}
+  .mode{font-family:"Courier New",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+    border:0;background:transparent;color:var(--ink-soft);padding:9px 20px;border-radius:999px;transition:all .16s ease}
+  .mode:hover{color:var(--ink)}
+  .mode[aria-pressed="true"]{background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep));color:var(--on-brass);
+    box-shadow:0 8px 16px -10px var(--glow-brass)}
 
   section{margin-top:42px}
   .sec-head{text-align:center;margin-bottom:22px}
   .sec-head h2{font-weight:400;font-size:24px;margin:6px 0 0}
   .hint{text-align:center;color:var(--ink-soft);font-size:13px;margin:6px auto 20px;max-width:60ch}
 
+  .presets{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;align-items:baseline;margin:0 auto 18px;max-width:640px}
+  .presets-label{font-family:"Courier New",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .preset{font-family:"Courier New",monospace;font-size:12px;cursor:pointer;border:0;background:transparent;color:var(--brass-deep);
+    padding:3px 0;border-bottom:1px dotted var(--brass);transition:color .16s ease}
+  .preset:hover{color:var(--ink);border-bottom-style:solid}
+  .preset[aria-pressed="true"]{color:var(--ink);border-bottom:1px solid var(--ink)}
+
   .tags{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
   .tag{font-family:"Courier New",monospace;font-size:13px;border:1px solid var(--brass-pale);background:var(--paper);
     color:var(--ink-soft);padding:9px 17px;border-radius:999px;cursor:pointer;transition:all .16s ease}
   .tag:hover{border-color:var(--brass);color:var(--ink);box-shadow:0 6px 14px -8px var(--shadow)}
-  .tag[aria-pressed="true"]{background:linear-gradient(180deg,#b99a5f,var(--brass-deep));border-color:var(--brass-deep);
-    color:#fffdf9;box-shadow:0 8px 16px -10px rgba(138,108,52,.7)}
-  .tag.custom{border-style:dashed;display:inline-flex;align-items:center;gap:9px}
-  .tag.custom[aria-pressed="true"]{border-style:solid}
-  .kill{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:0;opacity:.65;line-height:1}
-  .kill:hover{opacity:1}
+  .tag[aria-pressed="true"]{background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep));border-color:var(--brass-deep);
+    color:var(--on-brass);box-shadow:0 8px 16px -10px var(--glow-brass)}
+  .tag-group{display:inline-flex}
+  .tag-group .tag{border-style:dashed;border-right:0;border-radius:999px 0 0 999px;padding-right:9px}
+  .tag-group .kill{font-family:"Courier New",monospace;font-size:15px;line-height:1;cursor:pointer;border:1px dashed var(--brass-pale);
+    border-left:0;border-radius:0 999px 999px 0;background:var(--paper);color:var(--ink-soft);padding:0 14px 0 6px;transition:all .16s ease}
+  .tag-group .kill:hover{color:var(--ink)}
+  .tag-group.on .tag,.tag-group.on .kill{border-style:solid}
+  .tag-group.on .kill{background:var(--brass-deep);border-color:var(--brass-deep);color:var(--on-brass)}
 
   .warn{max-width:520px;margin:16px auto 0;text-align:center;font-family:"Courier New",monospace;font-size:12px;
-    color:var(--brass-deep);border:1px dashed var(--brass);border-radius:2px;padding:9px 14px;background:#fdf7e9}
-  .warn[hidden]{display:none}
+    color:var(--brass-deep);border:1px dashed var(--brass);border-radius:2px;padding:9px 14px;background:var(--wash)}
 
   .addrow{display:flex;gap:10px;margin:22px auto 0;max-width:430px;flex-wrap:wrap}
-  input[type=text]{font-family:"Courier New",monospace;font-size:14px;padding:11px 14px;border:1px solid var(--brass-pale);
+  input[type=text]{font-family:"Courier New",monospace;font-size:16px;padding:10px 14px;border:1px solid var(--brass-pale);
     border-radius:2px;background:var(--paper);color:var(--ink);flex:1 1 200px;min-width:0}
-  input[type=text]::placeholder{color:#b3a893}
-  input[type=text]:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px rgba(168,137,79,.14)}
+  input[type=text]::placeholder{color:var(--placeholder)}
+  input[type=text]:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px rgba(168,137,79,.18)}
   button:focus-visible,a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 
   .btn{font-family:"Courier New",monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
     border:1px solid var(--brass);background:var(--paper);color:var(--brass-deep);padding:11px 20px;border-radius:2px;transition:all .16s ease}
-  .btn:hover{background:var(--brass);color:#fffdf9;box-shadow:0 10px 20px -12px var(--shadow)}
+  .btn:hover{background:var(--brass);color:var(--on-brass);box-shadow:0 10px 20px -12px var(--shadow)}
+  .linkbtn{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;
+    border:0;background:transparent;color:var(--brass-deep);padding:4px 2px;border-bottom:1px dotted var(--brass)}
+  .linkbtn:hover{color:var(--ink);border-bottom-style:solid}
 
   .dd{position:relative;max-width:400px;margin:0 auto}
   .dd-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:Georgia,serif;
     font-size:17px;cursor:pointer;border:1px solid var(--brass-pale);background:var(--paper);color:var(--ink-soft);
     padding:15px 20px;border-radius:2px;transition:all .16s ease;box-shadow:0 10px 24px -20px var(--shadow)}
   .dd-trigger:hover{border-color:var(--brass)}
-  .dd-trigger[data-chosen="1"]{color:var(--ink);border-color:var(--brass);background:#fffdf9}
-  .dd-caret{color:var(--brass);font-size:12px}
+  .dd-trigger[data-chosen="1"]{color:var(--ink);border-color:var(--brass);background:var(--paper-hi)}
+  .dd-caret{color:var(--brass);font-size:12px;transition:transform .16s ease}
+  .dd-trigger[aria-expanded="true"] .dd-caret{transform:rotate(180deg)}
   .dd-panel{position:absolute;z-index:20;top:calc(100% + 8px);left:0;right:0;background:var(--paper);
-    border:1px solid var(--brass-pale);border-radius:2px;box-shadow:0 26px 50px -22px rgba(120,96,54,.42);
-    max-height:290px;display:none;flex-direction:column;overflow:hidden}
+    border:1px solid var(--brass-pale);border-radius:2px;box-shadow:0 26px 50px -22px var(--shadow-strong);
+    max-height:320px;display:none;flex-direction:column;overflow:hidden}
   .dd-panel.open{display:flex}
   .dd-filter{margin:10px;flex:0 0 auto}
   .dd-list{overflow-y:auto;padding-bottom:6px}
@@ -86,38 +135,48 @@
   .dd-opt:hover,.dd-opt:focus{background:var(--cream-deep);outline:none}
   .dd-opt[aria-selected="true"]{color:var(--brass-deep);font-style:italic}
   .dd-all{border-bottom:1px solid var(--brass-pale);font-style:italic;color:var(--brass-deep)}
-  .dd-empty{padding:12px 18px;font-size:13px;color:var(--ink-soft)}
+  .dd-custom{border-top:1px dashed var(--brass-pale);font-family:"Courier New",monospace;font-size:13px;color:var(--brass-deep)}
+  .dd-hint{text-align:center;font-family:"Courier New",monospace;font-size:11px;color:var(--muted);margin-top:10px}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
   .card{border:1px solid var(--brass-pale);background:var(--paper);padding:17px 18px;cursor:pointer;text-align:left;
     font:inherit;color:inherit;display:flex;gap:13px;align-items:flex-start;border-radius:3px;transition:all .18s ease;
     box-shadow:0 10px 26px -22px var(--shadow)}
   .card:hover{transform:translateY(-2px);border-color:var(--brass);box-shadow:0 18px 32px -22px var(--shadow)}
-  .card[aria-pressed="true"]{border-color:var(--brass);background:#fffdf9}
+  .card[aria-pressed="true"]{border-color:var(--brass);background:var(--paper-hi)}
+  .card[aria-pressed="false"]{opacity:.72}
+  .card[aria-pressed="false"]:hover{opacity:1}
   .box{width:17px;height:17px;flex:0 0 auto;margin-top:4px;border-radius:50%;border:1px solid var(--brass);position:relative;transition:all .18s ease}
   .card[aria-pressed="true"] .box{background:var(--brass-deep);border-color:var(--brass-deep)}
   .card[aria-pressed="true"] .box:after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;
-    border:solid #fffdf9;border-width:0 1.6px 1.6px 0;transform:rotate(42deg)}
+    border:solid var(--on-brass);border-width:0 1.6px 1.6px 0;transform:rotate(42deg)}
   .card b{display:block;font-weight:400;font-size:17px;margin-bottom:4px}
   .card .desc{display:block;font-family:"Courier New",monospace;font-size:11.5px;line-height:1.5;color:var(--ink-soft)}
-  .badge{display:inline-block;margin-top:8px;font-family:"Courier New",monospace;font-size:9.5px;letter-spacing:.14em;
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .badge{display:inline-block;font-family:"Courier New",monospace;font-size:9.5px;letter-spacing:.14em;
     text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--brass-pale);color:var(--brass-deep)}
-  .badge.pre{background:#f6eeda}
+  .badge.pre{background:var(--badge)}
+  .badge.part{background:var(--badge);border-style:dashed}
+  .badge.fresh{border-color:var(--sage);color:var(--sage-deep);background:var(--sage-wash)}
+  .grid-actions{display:flex;gap:18px;justify-content:center;margin-top:16px}
 
-  .go{margin-top:34px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
-  .btn-go{background:linear-gradient(180deg,#b99a5f,var(--brass-deep));border-color:var(--brass-deep);color:#fffdf9;
-    padding:16px 38px;font-size:13px;box-shadow:0 16px 30px -16px rgba(138,108,52,.75)}
-  .btn-go:hover{background:var(--ink);border-color:var(--ink);color:#fffdf9}
+  .opts{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .opt-note{font-family:"Courier New",monospace;font-size:11px;color:var(--muted)}
+  .go{margin-top:20px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .btn-go{background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep));border-color:var(--brass-deep);color:var(--on-brass);
+    padding:16px 38px;font-size:13px;box-shadow:0 16px 30px -16px var(--glow-brass)}
+  .btn-go:hover{background:var(--ink);border-color:var(--ink);color:var(--on-brass)}
   .err{max-width:560px;margin:22px auto 0;border:1px solid var(--brass);border-left:3px solid var(--brass-deep);
-    background:#fdf6e6;padding:13px 17px;font-size:14px;border-radius:2px}
-  .err[hidden]{display:none}
+    background:var(--wash);padding:13px 17px;font-size:14px;border-radius:2px}
 
-  #results{margin-top:38px}
+  #results{margin-top:38px;scroll-margin-top:16px}
+  .stale{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:center;margin-bottom:18px;padding:10px 14px;
+    border:1px dashed var(--brass);background:var(--wash);border-radius:2px;font-family:"Courier New",monospace;font-size:12px;color:var(--brass-deep)}
   .recap{text-align:center;font-family:"Courier New",monospace;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);
     padding-bottom:14px;margin-bottom:8px;border-bottom:1px solid var(--brass-pale)}
   .recap strong{font-weight:normal;color:var(--brass-deep)}
-  .counter{text-align:center;font-family:"Courier New",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-soft);margin-bottom:20px}
+  .res-bar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:center;margin-bottom:20px}
+  .counter{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
   .counter b{font-weight:normal;color:var(--sage-deep)}
 
   .link{position:relative;display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--brass-pale);
@@ -126,18 +185,20 @@
   .link:hover{transform:translateY(-2px);border-color:var(--brass);box-shadow:0 18px 34px -22px var(--shadow)}
   .link b{font-weight:400;font-size:17px}
   .link .note{display:block;font-family:"Courier New",monospace;font-size:11px;color:var(--brass-deep);margin-top:3px}
-  .link small{display:block;font-family:"Courier New",monospace;font-size:10.5px;color:#a1957f;word-break:break-all;margin-top:3px}
+  .link small{display:block;font-family:"Courier New",monospace;font-size:10.5px;color:var(--muted);word-break:break-all;margin-top:3px}
+  .link-right{display:flex;align-items:center;gap:10px;flex:0 0 auto}
   .arrow{font-size:17px;color:var(--brass);flex:0 0 auto}
+  .with-copy .link{margin-bottom:6px}
 
   /* état « déjà ouvert » */
-  .link.seen{background:var(--sage-wash);border-color:var(--sage);box-shadow:0 10px 26px -24px rgba(79,107,74,.35)}
+  .link.seen{background:var(--sage-wash);border-color:var(--sage);box-shadow:0 10px 26px -24px var(--sage-shadow)}
   .link.seen b{color:var(--sage-deep)}
   .link.seen .note{color:var(--sage-deep)}
-  .link.seen small{color:#93a58a}
+  .link.seen small{color:var(--sage-muted)}
   .link.seen .arrow{display:none}
-  .link.seen:hover{border-color:var(--sage-deep);box-shadow:0 18px 34px -22px rgba(79,107,74,.4)}
+  .link.seen:hover{border-color:var(--sage-deep);box-shadow:0 18px 34px -22px var(--sage-shadow)}
   .seen-tag{display:none;flex:0 0 auto;align-items:center;gap:6px;font-family:"Courier New",monospace;font-size:10.5px;
-    letter-spacing:.12em;text-transform:uppercase;color:#fffdf9;background:var(--sage-deep);
+    letter-spacing:.12em;text-transform:uppercase;color:var(--on-sage);background:var(--sage-deep);
     border-radius:999px;padding:5px 11px;white-space:nowrap}
   .link.seen .seen-tag{display:inline-flex}
 
@@ -145,33 +206,45 @@
   .copy-btn{font-family:"Courier New",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
     cursor:pointer;border:1px solid var(--brass-pale);background:var(--paper);color:var(--brass-deep);
     padding:6px 12px;border-radius:999px;transition:all .16s ease}
-  .copy-btn:hover{border-color:var(--brass);background:#f6eeda}
-  .copy-btn.copied{background:var(--sage-deep);border-color:var(--sage-deep);color:#fffdf9}
+  .copy-btn:hover{border-color:var(--brass);background:var(--badge)}
+  .copy-btn.copied{background:var(--sage-deep);border-color:var(--sage-deep);color:var(--on-sage)}
 
   footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--brass-pale);font-family:"Courier New",monospace;
-    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#b0a48d;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  noscript div{max-width:560px;margin:22px auto 0;border:1px solid var(--brass);padding:13px 17px;font-size:14px;text-align:center}
 
-  @media (max-width:560px){h1{font-size:30px} header{padding:30px 20px 26px} .btn-go{width:100%}}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;transform:none!important}}
+  @media (max-width:560px){
+    h1{font-size:30px} header{padding:30px 18px 26px} .btn-go{width:100%}
+    .link{padding:14px 15px} .copybar{margin-left:15px}
+    .seen-tag{padding:4px 9px;letter-spacing:.08em}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;transform:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <div class="eyebrow">Carnet de recherche · Master 2</div>
-    <h1>Chasseur <em>d'alternance</em></h1>
-    <div class="rule-orn">✦ ✦ ✦</div>
-    <p>Événementiel, palaces et 5 étoiles. Choisis tes mots-clés, une ville, tes plateformes. L'outil fabrique les recherches à ta place (après il faut quand même l'adapter).</p>
+    <div class="eyebrow" id="eyebrow">Carnet de recherche · Master 2</div>
+    <h1>Chasseur <em id="h1em">d'alternance</em></h1>
+    <div class="rule-orn" aria-hidden="true">✦ ✦ ✦</div>
+    <p id="lede">Événementiel, palaces et 5 étoiles. Choisis tes mots-clés, une ville, tes plateformes. L'outil fabrique les recherches à ta place (après il faut quand même l'adapter).</p>
+    <div class="modes" role="group" aria-label="Type de recherche">
+      <button type="button" class="mode" data-mode="alt" aria-pressed="true">Alternance</button>
+      <button type="button" class="mode" data-mode="job" aria-pressed="false">Job</button>
+    </div>
   </header>
+
+  <noscript><div>Cet outil a besoin de JavaScript pour fabriquer les liens.</div></noscript>
 
   <section>
     <div class="sec-head"><div class="eyebrow">Chapitre I</div><h2>Mots-clés</h2></div>
-    <p class="hint">Clique pour activer ou désactiver. Les mots dorés composent la recherche.</p>
+    <p class="hint">Clique pour activer ou désactiver. Les mots dorés composent la recherche. Les raccourcis activent une combinaison toute prête.</p>
+    <div class="presets" id="presets"></div>
     <div class="tags" id="tags"></div>
     <div class="warn" id="warn" hidden></div>
     <div class="addrow">
-      <input type="text" id="newTag" placeholder="Ajouter un mot-clé…" maxlength="40" aria-label="Nouveau mot-clé">
+      <input type="text" id="newTag" placeholder="Ajouter un mot-clé…" maxlength="40" aria-label="Nouveau mot-clé" autocomplete="off" enterkeyhint="done">
       <button class="btn" id="addTag" type="button">Ajouter</button>
     </div>
   </section>
@@ -179,42 +252,96 @@
   <section>
     <div class="sec-head"><div class="eyebrow">Chapitre II</div><h2>Ville</h2></div>
     <div class="dd" id="dd">
-      <button class="dd-trigger" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <button class="dd-trigger" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ddPanel">
         <span id="ddLabel">Choisir une ville</span><span class="dd-caret" aria-hidden="true">▾</span>
       </button>
-      <div class="dd-panel" id="ddPanel" role="listbox" aria-label="Villes">
-        <input type="text" class="dd-filter" id="ddFilter" placeholder="Filtrer…" aria-label="Filtrer les villes">
-        <div class="dd-list" id="ddList"></div>
+      <div class="dd-panel" id="ddPanel">
+        <input type="text" class="dd-filter" id="ddFilter" placeholder="Filtrer ou taper une ville…" aria-label="Filtrer les villes" autocomplete="off" enterkeyhint="go">
+        <div class="dd-list" id="ddList" role="listbox" aria-label="Villes"></div>
       </div>
     </div>
+    <p class="dd-hint">Ville absente de la liste ? Tape-la dans le filtre.</p>
   </section>
 
   <section>
     <div class="sec-head"><div class="eyebrow">Chapitre III</div><h2>Plateformes</h2></div>
-    <p class="hint">« Préremplie » : les mots-clés et la ville arrivent déjà dans la recherche. « À filtrer » : le site n'accepte pas de recherche par lien, les filtres se règlent sur place.</p>
+    <p class="hint">« Préremplie » : les mots-clés et la ville arrivent déjà dans la recherche. « Mots-clés » : la ville se règle sur place. « À filtrer » : le site n'accepte pas de recherche par lien, les filtres se règlent sur place.</p>
     <div class="grid" id="platforms"></div>
+    <div class="grid-actions">
+      <button class="linkbtn" id="allOn" type="button">Tout cocher</button>
+      <button class="linkbtn" id="allOff" type="button">Tout décocher</button>
+    </div>
   </section>
 
+  <div class="opts">
+    <button class="tag" id="recent" type="button" aria-pressed="false">Offres de moins de 7 jours</button>
+    <span class="opt-note">Appliqué sur Indeed, LinkedIn et Google</span>
+  </div>
   <div class="go">
     <button class="btn btn-go" id="generate" type="button">Générer les liens</button>
     <button class="btn" id="reset" type="button">Réinitialiser</button>
   </div>
-  <div class="err" id="err" hidden></div>
+  <div class="err" id="err" role="alert" hidden></div>
 
   <section id="results" aria-live="polite"></section>
 
-  <footer><span>Fait pour chercher vite. J'ajouterai d'autres sites encore au fur et à mesure.</span><span>Les liens ouverts passent au vert</span></footer>
+  <footer><span>Fait pour chercher vite. J'ajouterai encore d'autres sites au fur et à mesure.</span><span>Les liens ouverts passent au vert jusqu'à minuit</span></footer>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   try {
-    var DEFAULT_TAGS = [
-      {label:'Événementiel', on:true},{label:'Alternance', on:true},{label:'Apprentissage', on:false},
-      {label:'Hôtel 5 étoiles', on:false},{label:'Palace', on:false},{label:'Luxe', on:false},
-      {label:'Hôtellerie', on:false},{label:'Apprenti', on:false}
-    ];
-    var tags = DEFAULT_TAGS.map(function(t){return {label:t.label,on:t.on,custom:false};});
+    function $(id){ return document.getElementById(id); }
+    function enc(s){ return encodeURIComponent(s); }
+    function fold(s){ return String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+    function slug(s){ return fold(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+    function pick(v, mode){ return (v && typeof v === 'object') ? v[mode] : v; }
+    function el(tag, cls, text){
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+    function btn(cls, text){ var b = el('button', cls, text); b.type = 'button'; return b; }
+    function today(){
+      var d = new Date();
+      return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    }
+
+    /* ---------- LES DEUX MODES ---------- */
+    var MODES = {
+      alt: {
+        eyebrow: 'Carnet de recherche · Master 2',
+        title: 'd\'alternance',
+        lede: 'Événementiel, palaces et 5 étoiles. Choisis tes mots-clés, une ville, tes plateformes. L\'outil fabrique les recherches à ta place (après il faut quand même l\'adapter).',
+        doc: 'Chasseur d\'alternance — événementiel & hôtellerie de luxe',
+        tags: [['Événementiel',1],['Alternance',1],['Apprentissage',0],['Hôtel 5 étoiles',0],['Palace',0],
+               ['Luxe',0],['Hôtellerie',0],['Apprenti',0]],
+        presets: [
+          {label:'Événementiel', tags:['Événementiel','Alternance']},
+          {label:'Palaces', tags:['Palace','Alternance']},
+          {label:'Hôtellerie de luxe', tags:['Hôtellerie','Luxe','Alternance']},
+          {label:'Apprentissage 5 étoiles', tags:['Hôtel 5 étoiles','Apprentissage']}
+        ]
+      },
+      job: {
+        eyebrow: 'Carnet de recherche · Emploi',
+        title: 'de job',
+        lede: 'Événementiel, agences, lieux, palaces et 5 étoiles. CDI, CDD ou missions : choisis un métier, une ville, tes plateformes. L\'outil fabrique les recherches à ta place (après il faut quand même l\'adapter).',
+        doc: 'Chasseur de job — événementiel & hôtellerie de luxe',
+        tags: [['Événementiel',1],['Chef de projet événementiel',0],['Event manager',0],['Coordinateur',0],
+               ['MICE',0],['Séminaires',0],['Banquets',0],['Wedding planner',0],['Agence',0],
+               ['Luxe',0],['Hôtel 5 étoiles',0],['Palace',0],['CDI',0],['CDD',0]],
+        presets: [
+          {label:'Chef de projet événementiel', tags:['Chef de projet événementiel']},
+          {label:'Event manager', tags:['Event manager']},
+          {label:'Séminaires & banquets', tags:['Séminaires','Banquets']},
+          {label:'Événementiel de luxe', tags:['Événementiel','Luxe']},
+          {label:'Agences', tags:['Événementiel','Agence']},
+          {label:'MICE', tags:['MICE']}
+        ]
+      }
+    };
 
     var CITIES = ['Paris','Rennes','Nice','Antibes','Cannes','Lyon','Marseille','Bordeaux','Lille','Strasbourg',
       'Toulouse','Courchevel','Monaco','Megève','Val d\'Isère','Méribel','Chamonix','Tignes','Annecy','Évian-les-Bains',
@@ -222,272 +349,513 @@ document.addEventListener('DOMContentLoaded', function () {
       'Aix-en-Provence','Avignon','Gordes','Saint-Rémy-de-Provence','Biarritz','Saint-Jean-de-Luz','Arcachon',
       'La Baule','Dinard','Saint-Malo','Deauville','Honfleur','Cabourg','Le Touquet','Versailles','Chantilly',
       'Fontainebleau','Reims','Épernay','Beaune','Dijon','Colmar','Nantes','Montpellier','Grenoble','Toulon','Ajaccio',
-      'Porto-Vecchio','Calvi','Bonifacio','Mougins','Grasse','Saint-Émilion'];
+      'Porto-Vecchio','Calvi','Bonifacio','Mougins','Grasse','Saint-Émilion','Boulogne-Billancourt','Neuilly-sur-Seine',
+      'Levallois-Perret','Sophia Antipolis'];
 
     var LBA_CITIES = {'paris':1,'lyon':1,'marseille':1,'bordeaux':1,'toulouse':1,'strasbourg':1,'nantes':1,
       'rennes':1,'montpellier':1,'grenoble':1,'nice':1,'lille':1,'dijon':1,'reims':1,'toulon':1,'annecy':1,'avignon':1};
+    var LBA = 'https://labonnealternance.apprentissage.beta.gouv.fr';
 
-    function enc(s){ return encodeURIComponent(s); }
-    function slug(s){
-      return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-    }
-    function $(id){ return document.getElementById(id); }
+    function google(q, recent){ return 'https://www.google.com/search?q='+enc(q)+(recent ? '&tbs=qdr:w' : ''); }
 
+    /* kind : pre = mots-clés + ville dans le lien · part = mots-clés seulement · filter = tout se règle sur place
+       recent : le site accepte le filtre « moins de 7 jours » par lien
+       def:false : décochée par défaut */
     var PLATFORMS = [
-      {id:'lba', name:'La Bonne Alternance', pre:false,
+      {id:'lba', modes:['alt'], name:'La Bonne Alternance', kind:'filter',
        desc:'Service public. Offres + entreprises qui recrutent des alternants sans annonce publiée.',
        note:'Tape ton métier dans le champ « Métier ou formation ».',
-       url:function(k,c){
-         if(!c) return 'https://labonnealternance.apprentissage.beta.gouv.fr/recherche';
-         var s = slug(c);
-         return LBA_CITIES[s] ? 'https://labonnealternance.apprentissage.beta.gouv.fr/alternance/ville/'+s
-                              : 'https://labonnealternance.apprentissage.beta.gouv.fr/recherche';
+       url:function(s){
+         var c = s.city && slug(s.city);
+         return (c && LBA_CITIES[c]) ? LBA+'/alternance/ville/'+c : LBA+'/recherche';
        }},
-      {id:'indeed', name:'Indeed', pre:true,
-       desc:'Le plus gros volume d\'offres en alternance et apprentissage.',
-       url:function(k,c){ return 'https://fr.indeed.com/jobs?q='+enc(k)+'&l='+enc(c || 'France'); }},
-      {id:'hellowork', name:'HelloWork', pre:true,
-       desc:'Très fourni sur l\'alternance en France. Alimente aussi La Bonne Alternance.',
-       url:function(k,c){
-         var u = 'https://www.hellowork.com/fr-fr/emploi/recherche.html?k='+enc(k);
-         if(c) u += '&l='+enc(c);   // sans ville : paramètre omis, pas vidé
+      {id:'indeed', modes:['alt','job'], name:'Indeed', kind:'pre', recent:true,
+       desc:{alt:'Le plus gros volume d\'offres en alternance et apprentissage.',
+             job:'Le plus gros volume d\'offres. Ajoute « CDI » ou « CDD » aux mots-clés pour cibler le contrat.'},
+       url:function(s){ return 'https://fr.indeed.com/jobs?q='+enc(s.q)+'&l='+enc(s.city || 'France')+(s.recent ? '&fromage=7' : ''); }},
+      {id:'hellowork', modes:['alt','job'], name:'HelloWork', kind:'pre',
+       desc:{alt:'Très fourni sur l\'alternance en France. Alimente aussi La Bonne Alternance.',
+             job:'Très fourni en CDI et CDD partout en France. Le filtre contrat se règle sur la page.'},
+       url:function(s){
+         var u = 'https://www.hellowork.com/fr-fr/emploi/recherche.html?k='+enc(s.q);
+         if (s.city) u += '&l='+enc(s.city);   // sans ville : paramètre omis, pas vidé
          return u + '&d=all';
        }},
-      {id:'linkedin', name:'LinkedIn', pre:true,
-       desc:'Là où les groupes hôteliers publient et où on contacte les RH.',
-       url:function(k,c){ return 'https://www.linkedin.com/jobs/search/?keywords='+enc(k)+'&location='+enc(c ? c+', France' : 'France'); }},
-      {id:'wttj', name:'Welcome to the Jungle', pre:false,
-       desc:'Filtre contrat « Alternance ». Beaucoup d\'événementiel et d\'agences.',
-       note:'Colle les mots-clés dans « Quel job recherchez-vous ? », puis filtre Contrat → Alternance.',
+      {id:'linkedin', modes:['alt','job'], name:'LinkedIn', kind:'pre', recent:true,
+       desc:{alt:'Là où les groupes hôteliers publient et où on contacte les RH.',
+             job:'Groupes hôteliers, agences et lieux publient ici. Et c\'est là qu\'on écrit aux RH.'},
+       url:function(s){
+         var loc = !s.city ? 'France' : (s.city === 'Monaco' ? 'Monaco' : s.city+', France');
+         return 'https://www.linkedin.com/jobs/search/?keywords='+enc(s.q)+'&location='+enc(loc)+(s.recent ? '&f_TPR=r604800' : '');
+       }},
+      {id:'francetravail', modes:['job'], name:'France Travail', kind:'part',
+       desc:'Service public de l\'emploi, avec en plus les offres des sites partenaires.',
+       note:'Mots-clés déjà saisis. Ajoute la ville dans « Lieu de travail ».',
+       url:function(s){ return 'https://candidat.francetravail.fr/offres/recherche?motsCles='+enc(s.q)+'&offresPartenaires=true&tri=0'; }},
+      {id:'apec', modes:['job'], name:'Apec', kind:'part',
+       desc:'Les postes cadres : chef de projet, responsable événementiel, event manager.',
+       note:'Règle le lieu sur place. Si les mots-clés ne sont pas repris, colle-les.',
+       url:function(s){ return 'https://www.apec.fr/candidat/recherche-emploi.html/emploi?motsCles='+enc(s.q); }},
+      {id:'wttj', modes:['alt','job'], name:'Welcome to the Jungle', kind:'filter',
+       desc:{alt:'Filtre contrat « Alternance ». Beaucoup d\'événementiel et d\'agences.',
+             job:'Agences événementielles, lieux et marques. Filtre contrat CDI, CDD ou freelance.'},
+       note:{alt:'Colle les mots-clés dans « Quel job recherchez-vous ? », puis filtre Contrat → Alternance.',
+             job:'Colle les mots-clés dans « Quel job recherchez-vous ? », puis filtre Contrat → CDI ou CDD.'},
        url:function(){ return 'https://www.welcometothejungle.com/fr/jobs'; }},
-      {id:'jdp', name:'Journal des Palaces', pre:false,
-       desc:'La référence du luxe hôtelier. Filtre contrat « Alternance / Apprentissage ».',
-       note:'Un seul métier accepté (ex. « Événementiel »). Puis Contrat → Alternance · Formation → Bac+5.',
+      {id:'jdp', modes:['alt','job'], name:'Journal des Palaces', kind:'filter',
+       desc:{alt:'La référence du luxe hôtelier. Filtre contrat « Alternance / Apprentissage ».',
+             job:'La référence du luxe hôtelier. Events, séminaires et banquets des palaces.'},
+       note:{alt:'Un seul métier accepté (ex. « Événementiel »). Puis Contrat → Alternance · Formation → Bac+5.',
+             job:'Un seul métier accepté (ex. « Événementiel »). Puis Contrat → CDI ou CDD.'},
        url:function(){ return 'https://www.journaldespalaces.com/carriere/rechercher-des-offres-hotels.html'; }},
-      {id:'1j1s', name:'1jeune1solution', pre:false,
+      {id:'wizbii', modes:['job'], name:'Wizbii', kind:'filter',
+       desc:'Jeunes diplômés. Rubrique événementiel avec CDI, CDD et freelance.',
+       note:'La rubrique événementiel s\'ouvre directement : parcours la liste.',
+       url:function(){ return 'https://www.wizbii.com/emploi/evenementiel'; }},
+      {id:'lhr', modes:['job'], name:'L\'Hôtellerie Restauration', kind:'filter', def:false,
+       desc:'Le journal du métier. Rubrique séminaires & banquets des hôtels et traiteurs.',
+       note:'Peu d\'offres mais très ciblées. Filtre par région sur la page.',
+       url:function(){ return 'https://www.lhotellerie-restauration.fr/emplois/seminaire-banquet'; }},
+      {id:'1j1s', modes:['alt'], name:'1jeune1solution', kind:'filter',
        desc:'Portail gouvernemental. Agrège France Travail et partenaires, filtre apprentissage actif.',
        note:'Ajoute ton métier et ta ville dans les filtres de la page.',
        url:function(){ return 'https://www.1jeune1solution.gouv.fr/emplois?naturesContrats=E2'; }},
-      {id:'letudiant', name:'L\'Étudiant — jobboard', pre:false,
+      {id:'letudiant', modes:['alt'], name:'L\'Étudiant — jobboard', kind:'filter',
        desc:'11 000+ offres en apprentissage et contrat pro, du BTS au Bac+5.',
        note:'Filtre par ville et niveau d\'études sur la page.',
        url:function(){ return 'https://jobs-stages.letudiant.fr/offres/contrat-alternance'; }},
-      {id:'googleor', name:'Google — recherche « OU »', pre:true,
+      {id:'googleor', modes:['alt','job'], name:'Google — recherche « OU »', kind:'pre', recent:true,
        desc:'Croise luxe OR palace OR « haut de gamme » OR premium. Attrape les sites carrière des hôtels.',
-       url:function(k,c){ return 'https://www.google.com/search?q='+enc((k+' '+(c||'France')+' (luxe OR palace OR "haut de gamme" OR premium)')); }}
+       url:function(s){ return google(s.q+' '+(s.city || 'France')+' (luxe OR palace OR "haut de gamme" OR premium)', s.recent); }},
+      {id:'googlecareers', modes:['alt','job'], name:'Google — pages carrière', kind:'pre', recent:true,
+       desc:'Remonte les pages « Nous rejoindre » des hôtels, agences et lieux, souvent absentes des job boards.',
+       url:function(s){ return google(s.q+' '+(s.city || 'France')+' ("nous rejoindre" OR carrières OR recrutement OR careers)', s.recent); }}
     ];
-    var checked = {};
-    PLATFORMS.forEach(function(p){ checked[p.id] = true; });
-    var city = null;      // null = toute la France
-    var chosen = false;   // un choix a-t-il été fait ?
-    var seenCount = 0, totalCount = 0;
+    var KIND_LABEL = {pre:'Préremplie', part:'Mots-clés', filter:'À filtrer'};
+    function platformsFor(mode){ return PLATFORMS.filter(function(p){ return p.modes.indexOf(mode) !== -1; }); }
 
-    /* ---------- TAGS ---------- */
-    var tagsEl = $('tags'), warn = $('warn');
+    /* ---------- ÉTAT (mémorisé dans le navigateur) ---------- */
+    var KEY = 'chasseur.v2';
+    function defaultTags(mode){ return MODES[mode].tags.map(function(t){ return {label:t[0], on:!!t[1], custom:false}; }); }
+    function defaultChecked(mode){
+      var c = {};
+      platformsFor(mode).forEach(function(p){ c[p.id] = p.def !== false; });
+      return c;
+    }
+    function freshMode(mode){ return {tags:defaultTags(mode), checked:defaultChecked(mode), generated:false}; }
+    var S = {mode:'alt', city:null, chosen:false, recent:false, m:{alt:freshMode('alt'), job:freshMode('job')}, seen:{}};
+
+    (function restore(){
+      var raw = null;
+      try { raw = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { raw = null; }
+      if (!raw || typeof raw !== 'object') return;
+      if (raw.mode === 'alt' || raw.mode === 'job') S.mode = raw.mode;
+      S.chosen = !!raw.chosen;
+      S.city = (S.chosen && typeof raw.city === 'string' && raw.city.trim()) ? raw.city.trim().slice(0,60) : null;
+      S.recent = !!raw.recent;
+      ['alt','job'].forEach(function(m){
+        var r = raw.m && raw.m[m];
+        if (!r || typeof r !== 'object') return;
+        if (Array.isArray(r.tags)){
+          var t = r.tags.filter(function(x){ return x && typeof x.label === 'string' && x.label.trim(); })
+                        .map(function(x){ return {label:x.label.trim().slice(0,40), on:!!x.on, custom:!!x.custom}; });
+          if (t.length) S.m[m].tags = t;
+        }
+        if (r.checked && typeof r.checked === 'object'){
+          Object.keys(S.m[m].checked).forEach(function(id){
+            if (typeof r.checked[id] === 'boolean') S.m[m].checked[id] = r.checked[id];
+          });
+        }
+        S.m[m].generated = !!r.generated;
+      });
+      var d = today();
+      if (raw.seen && typeof raw.seen === 'object'){
+        Object.keys(raw.seen).forEach(function(h){ if (raw.seen[h] === d) S.seen[h] = d; });  // on oublie les jours passés
+      }
+    })();
+    function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+    function cur(){ return S.m[S.mode]; }
+
+    function modeFromHash(){
+      var h = (location.hash || '').replace('#','').toLowerCase();
+      if (h === 'job' || h === 'emploi') return 'job';
+      if (h === 'alternance') return 'alt';
+      return null;
+    }
+    var hashMode = modeFromHash();
+    if (hashMode) S.mode = hashMode;
+
+    /* ---------- MOTS-CLÉS ---------- */
+    var tagsEl = $('tags'), warn = $('warn'), presetsEl = $('presets');
+    function activeTags(){ return cur().tags.filter(function(t){ return t.on; }); }
     function checkWarn(){
-      var n = tags.filter(function(t){return t.on;}).length;
+      var n = activeTags().length;
       if (n >= 4){
         warn.textContent = n + ' mots-clés actifs. Les sites cherchent TOUS les mots à la fois : au-delà de 3, tu risques zéro résultat.';
         warn.hidden = false;
       } else { warn.hidden = true; }
     }
+    function syncPresets(){
+      var on = activeTags().map(function(t){ return fold(t.label); }).sort().join('|');
+      Array.prototype.forEach.call(presetsEl.querySelectorAll('.preset'), function(b, i){
+        var p = MODES[S.mode].presets[i];
+        var want = p.tags.map(fold).sort().join('|');
+        b.setAttribute('aria-pressed', on === want ? 'true' : 'false');
+      });
+    }
+    function renderPresets(){
+      presetsEl.innerHTML = '';
+      presetsEl.appendChild(el('span', 'presets-label', 'Raccourcis'));
+      MODES[S.mode].presets.forEach(function(p){
+        var b = btn('preset', p.label);
+        b.addEventListener('click', function(){ applyPreset(p); });
+        presetsEl.appendChild(b);
+      });
+      syncPresets();
+    }
+    function applyPreset(p){
+      var want = p.tags.map(fold);
+      cur().tags.forEach(function(t){ t.on = want.indexOf(fold(t.label)) !== -1; });
+      p.tags.forEach(function(lbl){
+        if (!cur().tags.some(function(t){ return fold(t.label) === fold(lbl); })) cur().tags.push({label:lbl, on:true, custom:true});
+      });
+      renderTags(); changed();
+    }
     function renderTags(){
       tagsEl.innerHTML = '';
-      tags.forEach(function(t, i){
-        var b = document.createElement('button');
-        b.type='button'; b.className='tag'+(t.custom?' custom':'');
-        b.setAttribute('aria-pressed', t.on ? 'true':'false');
-        var span = document.createElement('span'); span.textContent = t.label; b.appendChild(span);
-        b.addEventListener('click', function(){ t.on = !t.on; renderTags(); });
+      cur().tags.forEach(function(t, i){
+        var b = btn('tag', t.label);
+        b.setAttribute('aria-pressed', t.on ? 'true' : 'false');
+        var group = null;
+        b.addEventListener('click', function(){
+          t.on = !t.on;
+          b.setAttribute('aria-pressed', t.on ? 'true' : 'false');
+          if (group) group.classList.toggle('on', t.on);
+          changed();
+        });
         if (t.custom){
-          var k = document.createElement('span');
-          k.className='kill'; k.setAttribute('role','button'); k.tabIndex=0;
-          k.setAttribute('aria-label','Supprimer '+t.label); k.textContent='×';
-          k.addEventListener('click', function(e){ e.stopPropagation(); tags.splice(i,1); renderTags(); });
-          k.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();tags.splice(i,1);renderTags();} });
-          b.appendChild(k);
+          group = el('span', 'tag-group' + (t.on ? ' on' : ''));
+          var k = btn('kill', '×');
+          k.setAttribute('aria-label', 'Supprimer « ' + t.label + ' »'); k.title = 'Supprimer';
+          k.addEventListener('click', function(){
+            cur().tags.splice(i, 1);
+            renderTags(); changed();
+            $('newTag').focus();
+          });
+          group.appendChild(b); group.appendChild(k);
+          tagsEl.appendChild(group);
+        } else {
+          tagsEl.appendChild(b);
         }
-        tagsEl.appendChild(b);
       });
-      checkWarn();
     }
     function addTag(){
-      var v = $('newTag').value.trim();
-      if (!v) return;
-      if (!tags.some(function(t){ return t.label.toLowerCase()===v.toLowerCase(); })) tags.push({label:v,on:true,custom:true});
-      $('newTag').value=''; renderTags();
+      var input = $('newTag');
+      // plusieurs mots-clés d'un coup, séparés par des virgules
+      input.value.split(',').forEach(function(raw){
+        var v = raw.trim().slice(0,40);
+        if (!v) return;
+        var found = cur().tags.filter(function(t){ return fold(t.label) === fold(v); })[0];
+        if (found) found.on = true;
+        else cur().tags.push({label:v, on:true, custom:true});
+      });
+      input.value = '';
+      renderTags(); changed();
     }
     $('addTag').addEventListener('click', addTag);
-    $('newTag').addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); addTag(); } });
-    renderTags();
+    $('newTag').addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); addTag(); } });
 
     /* ---------- VILLE ---------- */
-    var ddBtn=$('ddBtn'), ddPanel=$('ddPanel'), ddList=$('ddList'), ddFilter=$('ddFilter'), ddLabel=$('ddLabel');
-    function renderCities(q){
-      q=(q||'').toLowerCase(); ddList.innerHTML='';
-
-      // option nationale, toujours en tête, insensible au filtre
-      var all=document.createElement('button');
-      all.type='button'; all.className='dd-opt dd-all'; all.setAttribute('role','option');
-      all.setAttribute('aria-selected', (chosen && city===null)?'true':'false');
-      all.textContent='Toute la France';
-      all.addEventListener('click', function(){
-        city=null; chosen=true; ddLabel.textContent='Toute la France'; ddBtn.setAttribute('data-chosen','1'); closeDD();
-      });
-      ddList.appendChild(all);
-
-      var hits = CITIES.filter(function(c){ return c.toLowerCase().indexOf(q)!==-1; });
-      if(!hits.length){ var e=document.createElement('div'); e.className='dd-empty'; e.textContent='Aucune ville ne correspond.'; ddList.appendChild(e); return; }
-      hits.forEach(function(c){
-        var o=document.createElement('button');
-        o.type='button'; o.className='dd-opt'; o.setAttribute('role','option');
-        o.setAttribute('aria-selected', city===c?'true':'false'); o.textContent=c;
-        o.addEventListener('click', function(){ city=c; chosen=true; ddLabel.textContent=c; ddBtn.setAttribute('data-chosen','1'); closeDD(); });
-        ddList.appendChild(o);
-      });
+    var ddBtn = $('ddBtn'), ddPanel = $('ddPanel'), ddList = $('ddList'), ddFilter = $('ddFilter'), ddLabel = $('ddLabel');
+    function updateCityLabel(){
+      ddLabel.textContent = S.chosen ? (S.city || 'Toute la France') : 'Choisir une ville';
+      if (S.chosen) ddBtn.setAttribute('data-chosen', '1'); else ddBtn.removeAttribute('data-chosen');
     }
-    function openDD(){ ddPanel.classList.add('open'); ddBtn.setAttribute('aria-expanded','true'); ddFilter.value=''; renderCities(''); ddFilter.focus(); }
-    function closeDD(){ ddPanel.classList.remove('open'); ddBtn.setAttribute('aria-expanded','false'); }
-    ddBtn.addEventListener('click', function(e){ e.stopPropagation(); ddPanel.classList.contains('open')?closeDD():openDD(); });
+    function setCity(c){
+      S.city = c; S.chosen = true;
+      updateCityLabel(); closeDD(true); changed();
+    }
+    function cityOpt(label, selected, onPick, extraCls){
+      var o = btn('dd-opt' + (extraCls ? ' ' + extraCls : ''), label);
+      o.setAttribute('role', 'option');
+      o.setAttribute('aria-selected', selected ? 'true' : 'false');
+      o.addEventListener('click', onPick);
+      ddList.appendChild(o);
+      return o;
+    }
+    function renderCities(q){
+      var raw = (q || '').trim(), fq = fold(raw);
+      ddList.innerHTML = '';
+      // option nationale, toujours en tête, insensible au filtre
+      cityOpt('Toute la France', S.chosen && S.city === null, function(){ setCity(null); }, 'dd-all');
+      // filtre sans accents : « eze » trouve « Èze », « evian » trouve « Évian-les-Bains »
+      var hits = CITIES.filter(function(c){ return fold(c).indexOf(fq) !== -1; });
+      if (fq) hits.sort(function(a, b){ return (fold(a).indexOf(fq) === 0 ? 0 : 1) - (fold(b).indexOf(fq) === 0 ? 0 : 1); });
+      hits.forEach(function(c){ cityOpt(c, S.city === c, function(){ setCity(c); }); });
+      var exact = hits.some(function(c){ return fold(c) === fq; });
+      if (raw && !exact){
+        var v = raw.slice(0,60);
+        cityOpt('Chercher à « ' + v + ' »', S.city === v, function(){ setCity(v); }, 'dd-custom');
+      }
+    }
+    function openDD(){
+      ddPanel.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true');
+      ddFilter.value = ''; renderCities(''); ddFilter.focus();
+    }
+    function closeDD(focusBtn){
+      if (!ddPanel.classList.contains('open')) return;
+      ddPanel.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false');
+      if (focusBtn) ddBtn.focus();
+    }
+    ddBtn.addEventListener('click', function(e){ e.stopPropagation(); ddPanel.classList.contains('open') ? closeDD(false) : openDD(); });
     ddPanel.addEventListener('click', function(e){ e.stopPropagation(); });
     ddFilter.addEventListener('input', function(){ renderCities(ddFilter.value); });
-    document.addEventListener('click', closeDD);
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDD(); });
-    renderCities('');
+    ddFilter.addEventListener('keydown', function(e){
+      var opts = ddList.querySelectorAll('.dd-opt');
+      var hasQuery = !!ddFilter.value.trim();
+      if (e.key === 'ArrowDown'){
+        e.preventDefault();
+        if (opts.length) opts[hasQuery && opts.length > 1 ? 1 : 0].focus();
+      } else if (e.key === 'Enter'){
+        e.preventDefault();
+        if (hasQuery && opts.length > 1) opts[1].click();   // premier résultat (ou la ville tapée)
+      }
+    });
+    ddList.addEventListener('keydown', function(e){
+      var opts = Array.prototype.slice.call(ddList.querySelectorAll('.dd-opt'));
+      var i = opts.indexOf(document.activeElement);
+      if (i === -1) return;
+      if (e.key === 'ArrowDown'){ e.preventDefault(); (opts[i+1] || opts[i]).focus(); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); if (i === 0) ddFilter.focus(); else opts[i-1].focus(); }
+    });
+    document.addEventListener('click', function(){ closeDD(false); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDD(true); });
 
     /* ---------- PLATEFORMES ---------- */
-    var grid=$('platforms');
-    PLATFORMS.forEach(function(p){
-      var c=document.createElement('button');
-      c.type='button'; c.className='card'; c.setAttribute('aria-pressed','true');
-      var box=document.createElement('span'); box.className='box'; box.setAttribute('aria-hidden','true');
-      var body=document.createElement('span');
-      var b=document.createElement('b'); b.textContent=p.name;
-      var d=document.createElement('span'); d.className='desc'; d.textContent=p.desc;
-      var g=document.createElement('span'); g.className='badge'+(p.pre?' pre':''); g.textContent=p.pre?'Préremplie':'À filtrer';
-      body.appendChild(b); body.appendChild(d); body.appendChild(g);
-      c.appendChild(box); c.appendChild(body);
-      c.addEventListener('click', function(){
-        checked[p.id]=!checked[p.id];
-        c.setAttribute('aria-pressed', checked[p.id]?'true':'false');
+    var grid = $('platforms');
+    function renderPlatforms(){
+      grid.innerHTML = '';
+      platformsFor(S.mode).forEach(function(p){
+        var c = btn('card');
+        c.setAttribute('aria-pressed', cur().checked[p.id] ? 'true' : 'false');
+        var box = el('span', 'box'); box.setAttribute('aria-hidden', 'true');
+        var body = el('span');
+        body.appendChild(el('b', null, p.name));
+        body.appendChild(el('span', 'desc', pick(p.desc, S.mode)));
+        var badges = el('span', 'badges');
+        badges.appendChild(el('span', 'badge ' + p.kind, KIND_LABEL[p.kind]));
+        if (S.recent && p.recent) badges.appendChild(el('span', 'badge fresh', '7 jours'));
+        body.appendChild(badges);
+        c.appendChild(box); c.appendChild(body);
+        c.addEventListener('click', function(){
+          cur().checked[p.id] = !cur().checked[p.id];
+          c.setAttribute('aria-pressed', cur().checked[p.id] ? 'true' : 'false');
+          changed();
+        });
+        grid.appendChild(c);
       });
-      grid.appendChild(c);
+    }
+    function setAll(v){
+      platformsFor(S.mode).forEach(function(p){ cur().checked[p.id] = v; });
+      renderPlatforms(); changed();
+    }
+    $('allOn').addEventListener('click', function(){ setAll(true); });
+    $('allOff').addEventListener('click', function(){ setAll(false); });
+
+    var recentBtn = $('recent');
+    function updateRecent(){ recentBtn.setAttribute('aria-pressed', S.recent ? 'true' : 'false'); }
+    recentBtn.addEventListener('click', function(){
+      S.recent = !S.recent; updateRecent(); renderPlatforms(); changed();
     });
 
-    /* ---------- GENERATION ---------- */
-    var err=$('err'), results=$('results'), counterEl=null;
-    function fail(msg){ err.textContent=msg; err.hidden=false; results.innerHTML=''; }
+    /* ---------- GÉNÉRATION ---------- */
+    var err = $('err'), results = $('results'), counterEl = null, staleEl = null, current = [];
+    function fail(msg){ err.textContent = msg; err.hidden = false; clearResults(); }
+    function clearResults(){ results.innerHTML = ''; counterEl = null; staleEl = null; current = []; }
 
+    // à chaque réglage modifié : on mémorise, et on signale que la liste affichée n'est plus à jour
+    function changed(){
+      checkWarn(); syncPresets(); save();
+      if (staleEl) staleEl.hidden = false;
+    }
+
+    function isSeen(href){ return S.seen[href] === today(); }
     function updateCounter(){
-      if(!counterEl) return;
-      counterEl.innerHTML='';
-      var b=document.createElement('b'); b.textContent=seenCount;
-      counterEl.appendChild(b);
-      counterEl.appendChild(document.createTextNode(' / '+totalCount+' ouverts'));
+      if (!counterEl) return;
+      var n = current.filter(function(x){ return isSeen(x.href); }).length;
+      counterEl.innerHTML = '';
+      counterEl.appendChild(el('b', null, String(n)));
+      counterEl.appendChild(document.createTextNode(' / ' + current.length + ' ouverts aujourd\'hui'));
     }
     function copyText(txt){
-      if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(txt); }
-      var ta=document.createElement('textarea');
-      ta.value=txt; ta.setAttribute('readonly',''); ta.style.position='absolute'; ta.style.left='-9999px';
-      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      return Promise.resolve();
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) return navigator.clipboard.writeText(txt);
+      return new Promise(function(resolve, reject){
+        var ta = document.createElement('textarea');
+        ta.value = txt; ta.setAttribute('readonly', ''); ta.style.position = 'absolute'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('copy'));
+      });
     }
     function makeCopy(label, value){
-      var b=document.createElement('button');
-      b.type='button'; b.className='copy-btn'; b.textContent=label;
+      var b = btn('copy-btn', label);
       b.addEventListener('click', function(){
-        copyText(value).then(function(){
-          var old=b.textContent;
-          b.classList.add('copied'); b.textContent='✓ Copié';
-          setTimeout(function(){ b.classList.remove('copied'); b.textContent=old; }, 1400);
-        }).catch(function(){ b.textContent='Copie impossible'; });
+        var txt = typeof value === 'function' ? value() : value;
+        copyText(txt).then(function(){
+          b.classList.add('copied'); b.textContent = '✓ Copié';
+          setTimeout(function(){ b.classList.remove('copied'); b.textContent = label; }, 1400);
+        }).catch(function(){
+          b.textContent = 'Copie impossible';
+          setTimeout(function(){ b.textContent = label; }, 1800);
+        });
       });
       return b;
     }
-    function markSeen(a){
-      if(a.classList.contains('seen')) return;
+    function markSeen(a, href){
+      if (!isSeen(href)){ S.seen[href] = today(); save(); }
       a.classList.add('seen');
-      seenCount++;
       updateCounter();
     }
 
-    $('generate').addEventListener('click', function(){
-      err.hidden=true;
-      var kw = tags.filter(function(t){return t.on;}).map(function(t){return t.label;});
-      var picked = PLATFORMS.filter(function(p){ return checked[p.id]; });
-      if(!kw.length) return fail('Aucun mot-clé actif. Active au moins un mot-clé pour définir la recherche.');
-      if(!chosen) return fail('Aucun périmètre choisi. Ouvre « Choisir une ville » et prends une ville, ou « Toute la France ».');
-      if(!picked.length) return fail('Aucune plateforme cochée. Coche au moins une carte.');
+    function generate(silent){
+      err.hidden = true;
+      var kw = activeTags().map(function(t){ return t.label; });
+      var picked = platformsFor(S.mode).filter(function(p){ return cur().checked[p.id]; });
+      var msg = !kw.length ? 'Aucun mot-clé actif. Active au moins un mot-clé pour définir la recherche.'
+              : !S.chosen ? 'Aucun périmètre choisi. Ouvre « Choisir une ville » et prends une ville, ou « Toute la France ».'
+              : !picked.length ? 'Aucune plateforme cochée. Coche au moins une carte.' : '';
+      if (msg){
+        if (silent){ clearResults(); return; }
+        return fail(msg);
+      }
 
-      var q = kw.join(' ');
+      var s = {q:kw.join(' '), city:S.city, recent:S.recent, mode:S.mode};
+      cur().generated = true; save();
+      clearResults();
+      current = picked.map(function(p){ return {p:p, href:p.url(s)}; });
 
-      // remise à zéro complète des états « ouvert »
-      results.innerHTML='';
-      seenCount = 0;
-      totalCount = picked.length;
+      staleEl = el('div', 'stale');
+      staleEl.appendChild(el('span', null, 'Réglages modifiés depuis la dernière génération.'));
+      var upd = btn('linkbtn', 'Mettre à jour');
+      upd.addEventListener('click', function(){ generate(false); });
+      staleEl.appendChild(upd);
+      staleEl.hidden = true;
+      results.appendChild(staleEl);
 
-      var recap=document.createElement('div'); recap.className='recap';
-      recap.appendChild(document.createTextNode(picked.length+' recherche'+(picked.length>1?'s':'')+' — '));
-      var s1=document.createElement('strong'); s1.textContent=q; recap.appendChild(s1);
+      var recap = el('div', 'recap');
+      recap.appendChild(document.createTextNode(current.length + ' recherche' + (current.length > 1 ? 's' : '') + ' — '));
+      recap.appendChild(el('strong', null, s.q));
       recap.appendChild(document.createTextNode(' · '));
-      var s2=document.createElement('strong'); s2.textContent=city || 'Toute la France'; recap.appendChild(s2);
+      recap.appendChild(el('strong', null, s.city || 'Toute la France'));
+      if (s.recent){ recap.appendChild(document.createTextNode(' · ')); recap.appendChild(el('strong', null, 'moins de 7 jours')); }
       results.appendChild(recap);
 
-      counterEl=document.createElement('div'); counterEl.className='counter';
-      results.appendChild(counterEl);
-      updateCounter();
+      var bar = el('div', 'res-bar');
+      counterEl = el('div', 'counter');
+      bar.appendChild(counterEl);
+      bar.appendChild(makeCopy('Copier tous les liens', function(){
+        return current.map(function(x){ return x.p.name + ' : ' + x.href; }).join('\n');
+      }));
+      var unsee = btn('linkbtn', 'Tout repasser en non lu');
+      unsee.addEventListener('click', function(){
+        current.forEach(function(x){ delete S.seen[x.href]; });
+        save();
+        Array.prototype.forEach.call(results.querySelectorAll('.link.seen'), function(a){ a.classList.remove('seen'); });
+        updateCounter();
+      });
+      bar.appendChild(unsee);
+      results.appendChild(bar);
 
-      picked.forEach(function(p){
-        var href = p.url(q, city);
-        var a=document.createElement('a');
-        a.className='link'; a.href=href; a.target='_blank'; a.rel='noopener noreferrer';
+      current.forEach(function(x){
+        var p = x.p, href = x.href;
+        var a = el('a', 'link' + (isSeen(href) ? ' seen' : ''));
+        a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer';
 
-        var left=document.createElement('span');
-        var b=document.createElement('b'); b.textContent=p.name; left.appendChild(b);
-        if(p.note){ var n=document.createElement('span'); n.className='note'; n.textContent=p.note; left.appendChild(n); }
-        var s=document.createElement('small'); s.textContent=href; left.appendChild(s);
+        var left = el('span');
+        left.appendChild(el('b', null, p.name));
+        var note = pick(p.note, S.mode);
+        if (s.recent && p.recent) note = (note ? note + ' ' : '') + 'Offres des 7 derniers jours.';
+        if (note) left.appendChild(el('span', 'note', note));
+        left.appendChild(el('small', null, href));
 
-        var right=document.createElement('span'); right.style.display='flex'; right.style.alignItems='center'; right.style.gap='10px';
-        var tag=document.createElement('span'); tag.className='seen-tag'; tag.textContent='✓ Ouvert !';
-        var ar=document.createElement('span'); ar.className='arrow'; ar.textContent='↗';
-        right.appendChild(tag); right.appendChild(ar);
-
+        var right = el('span', 'link-right');
+        right.appendChild(el('span', 'seen-tag', '✓ Ouvert'));
+        var ar = el('span', 'arrow', '↗'); ar.setAttribute('aria-hidden', 'true');
+        right.appendChild(ar);
         a.appendChild(left); a.appendChild(right);
 
         // clic, molette, tap, ou ouverture clavier : tout marque comme ouvert
-        a.addEventListener('click', function(){ markSeen(a); });
-        a.addEventListener('auxclick', function(){ markSeen(a); });
-        a.addEventListener('contextmenu', function(){ markSeen(a); });
+        a.addEventListener('click', function(){ markSeen(a, href); });
+        a.addEventListener('auxclick', function(e){ if (e.button === 1) markSeen(a, href); });
+        a.addEventListener('contextmenu', function(){ markSeen(a, href); });
 
-        // les sites « à filtrer » demandent une saisie manuelle : on met les valeurs à portée de doigt
-        if(!p.pre){
-          a.style.marginBottom='6px';
-          var bar=document.createElement('div'); bar.className='copybar';
-          bar.appendChild(makeCopy('Copier les mots-clés', q));
-          if(city) bar.appendChild(makeCopy('Copier la ville', city));
-          var box=document.createElement('div');
-          box.appendChild(a); box.appendChild(bar);
-          results.appendChild(box);
+        // les sites qui demandent une saisie manuelle : on met les valeurs à portée de doigt
+        if (p.kind !== 'pre'){
+          var wrapEl = el('div', 'with-copy');
+          var cb = el('div', 'copybar');
+          cb.appendChild(makeCopy('Copier les mots-clés', s.q));
+          if (s.city) cb.appendChild(makeCopy('Copier la ville', s.city));
+          wrapEl.appendChild(a); wrapEl.appendChild(cb);
+          results.appendChild(wrapEl);
         } else {
           results.appendChild(a);
         }
       });
-      results.scrollIntoView({behavior:'smooth', block:'start'});
+      updateCounter();
+      if (!silent) results.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    $('generate').addEventListener('click', function(){ generate(false); });
+
+    // retour sur l'onglet (ou le lendemain) : on remet les compteurs à jour
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden || !current.length) return;
+      Array.prototype.forEach.call(results.querySelectorAll('a.link'), function(a){
+        a.classList.toggle('seen', isSeen(a.getAttribute('href')));
+      });
+      updateCounter();
     });
 
     $('reset').addEventListener('click', function(){
-      tags = DEFAULT_TAGS.map(function(t){return {label:t.label,on:t.on,custom:false};});
-      city=null; chosen=false; ddLabel.textContent='Choisir une ville'; ddBtn.removeAttribute('data-chosen');
-      PLATFORMS.forEach(function(p){ checked[p.id]=true; });
-      Array.prototype.forEach.call(grid.children, function(c){ c.setAttribute('aria-pressed','true'); });
-      err.hidden=true; results.innerHTML=''; counterEl=null; seenCount=0; totalCount=0;
-      renderTags(); renderCities('');
+      S.m[S.mode] = freshMode(S.mode);
+      S.city = null; S.chosen = false; S.recent = false; S.seen = {};
+      save();
+      err.hidden = true; clearResults();
+      updateCityLabel(); updateRecent(); renderCities('');
+      renderPresets(); renderTags(); renderPlatforms(); checkWarn();
     });
 
+    /* ---------- BASCULE ALTERNANCE / JOB ---------- */
+    var modeBtns = Array.prototype.slice.call(document.querySelectorAll('.mode'));
+    function applyMode(){
+      var M = MODES[S.mode];
+      $('eyebrow').textContent = M.eyebrow;
+      $('h1em').textContent = M.title;
+      $('lede').textContent = M.lede;
+      document.title = M.doc;
+      modeBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-mode') === S.mode ? 'true' : 'false'); });
+      err.hidden = true;
+      renderPresets(); renderTags(); renderPlatforms(); checkWarn();
+      clearResults();
+      if (cur().generated) generate(true);
+    }
+    function setMode(m){
+      if (m === S.mode || !MODES[m]) return;
+      S.mode = m; save();
+      try { history.replaceState(null, '', m === 'job' ? '#job' : location.pathname + location.search); } catch (e) {}
+      applyMode();
+    }
+    modeBtns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode')); }); });
+    window.addEventListener('hashchange', function(){ var m = modeFromHash(); if (m) setMode(m); });
+
+    updateCityLabel(); updateRecent(); renderCities('');
+    applyMode();
+
   } catch (e) {
-    var box=document.createElement('div');
-    box.style.cssText='border:1px solid #8a6c34;padding:14px;margin:20px;font-family:monospace';
-    box.textContent='L\'outil n\'a pas pu démarrer : '+e.message;
+    var box = document.createElement('div');
+    box.style.cssText = 'border:1px solid #8a6c34;padding:14px;margin:20px;font-family:monospace';
+    box.textContent = 'L\'outil n\'a pas pu démarrer : ' + e.message;
     document.body.appendChild(box);
   }
 });
