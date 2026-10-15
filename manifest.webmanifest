@@ -15,6 +15,7 @@
   ],
   "shortcuts": [
     { "name": "Chasseur de job", "url": "./#job" },
-    { "name": "Chasseur d'alternance", "url": "./#alternance" }
+    { "name": "Chasseur d'alternance", "url": "./#alternance" },
+    { "name": "Suivi des candidatures", "url": "./#suivi" }
   ]
 }
