@@ -1,13 +1,13 @@
 {
   "name": "Chasseur — alternance & job en événementiel",
   "short_name": "Chasseur",
-  "description": "Générateur de recherches d'alternance et d'emploi en événementiel et hôtellerie de luxe.",
+  "description": "Recherches d'alternance et d'emploi en événementiel et hôtellerie de luxe, employeurs à viser et suivi des candidatures.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fbf7ef",
-  "theme_color": "#fbf7ef",
+  "background_color": "#14213D",
+  "theme_color": "#14213D",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },

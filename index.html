@@ -2,1578 +2,268 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Générateur de recherches d'alternance et d'emploi en événementiel et hôtellerie de luxe, avec suivi des candidatures.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chasseur d'alternance — événementiel &amp; hôtellerie de luxe</title>
+<meta name="description" content="Prépare d'un coup tes recherches d'alternance ou d'emploi en événementiel et hôtellerie de luxe, vise les bons employeurs et suis tes candidatures.">
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#14213D">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Chasseur">
-<meta name="theme-color" content="#fbf7ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1c1915" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Chasseur">
 <meta property="og:title" content="Chasseur d'alternance & de job — événementiel & luxe">
-<meta property="og:description" content="Mots-clés, ville, plateformes : l'outil fabrique les recherches d'alternance et d'emploi en événementiel et hôtellerie de luxe, et suit tes candidatures.">
+<meta property="og:description" content="Mots-clés, ville, plateformes : toutes tes recherches d'un coup, les employeurs à viser et le suivi de tes candidatures.">
 <meta property="og:url" content="https://chasseur-alternance.online/">
 <meta property="og:image" content="https://chasseur-alternance.online/icon-512.png">
 <link rel="canonical" href="https://chasseur-alternance.online/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Chasseur d'alternance — événementiel &amp; hôtellerie de luxe</title>
+<link rel="preload" href="fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
 <script>
+  document.documentElement.classList.add("js");
   // thème choisi à la main : appliqué avant l'affichage pour éviter un flash
-  try { var th = localStorage.getItem('chasseur.theme'); if (th === 'light' || th === 'dark') document.documentElement.setAttribute('data-theme', th); } catch (e) {}
+  try { var th = localStorage.getItem("chasseur.theme"); if (th === "light" || th === "dark") document.documentElement.setAttribute("data-theme", th); } catch (e) {}
 </script>
-<style>
-  :root{
-    --cream:#fbf7ef; --cream-deep:#f3ebdc; --paper:#fffdf9; --paper-hi:#fffdf9; --glow:#fffdf9;
-    --ink:#2a2620; --ink-soft:#6d6355; --muted:#a1957f; --faint:#b0a48d; --placeholder:#b3a893;
-    --brass:#a8894f; --brass-hi:#b99a5f; --brass-deep:#8a6c34; --brass-pale:#e6d7b8; --on-brass:#fffdf9;
-    --wash:#fdf7e9; --badge:#f6eeda;
-    --shadow:rgba(120,96,54,.16); --shadow-strong:rgba(120,96,54,.42); --glow-brass:rgba(138,108,52,.7);
-    --sage:#6f8a63; --sage-deep:#4f6b4a; --sage-pale:#dfe8d7; --sage-wash:#f1f5ec; --sage-muted:#93a58a;
-    --on-sage:#fffdf9; --sage-shadow:rgba(79,107,74,.35);
-    color-scheme:light;
-  }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --cream:#1c1915; --cream-deep:#14120f; --paper:#25211b; --paper-hi:#2b261f; --glow:#2e2820;
-      --ink:#efe6d5; --ink-soft:#b8ac96; --muted:#8f846f; --faint:#857a65; --placeholder:#7d735f;
-      --brass:#b8995c; --brass-hi:#dcc08a; --brass-deep:#cdae70; --brass-pale:#4a4031; --on-brass:#1c1915;
-      --wash:#2b2519; --badge:#352d1f;
-      --shadow:rgba(0,0,0,.45); --shadow-strong:rgba(0,0,0,.65); --glow-brass:rgba(0,0,0,.55);
-      --sage:#7f9c72; --sage-deep:#a3c294; --sage-pale:#2f3a2a; --sage-wash:#1f271c; --sage-muted:#7f9573;
-      --on-sage:#14120f; --sage-shadow:rgba(0,0,0,.4);
-      color-scheme:dark;
-    }
-  }
-  :root[data-theme="dark"]{
-    --cream:#1c1915; --cream-deep:#14120f; --paper:#25211b; --paper-hi:#2b261f; --glow:#2e2820;
-    --ink:#efe6d5; --ink-soft:#b8ac96; --muted:#8f846f; --faint:#857a65; --placeholder:#7d735f;
-    --brass:#b8995c; --brass-hi:#dcc08a; --brass-deep:#cdae70; --brass-pale:#4a4031; --on-brass:#1c1915;
-    --wash:#2b2519; --badge:#352d1f;
-    --shadow:rgba(0,0,0,.45); --shadow-strong:rgba(0,0,0,.65); --glow-brass:rgba(0,0,0,.55);
-    --sage:#7f9c72; --sage-deep:#a3c294; --sage-pale:#2f3a2a; --sage-wash:#1f271c; --sage-muted:#7f9573;
-    --on-sage:#14120f; --sage-shadow:rgba(0,0,0,.4);
-    color-scheme:dark;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--cream) radial-gradient(1200px 600px at 50% -10%, var(--glow) 0%, var(--cream) 55%, var(--cream-deep) 100%);
-    background-attachment:fixed;
-    color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.6;
-    padding:28px 16px 70px;-webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:820px;margin:0 auto}
-  .eyebrow{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-deep)}
-  [hidden]{display:none!important}
-  .mono{font-family:"Courier New",monospace}
-
-  header{background:var(--paper);border:1px solid var(--brass-pale);border-radius:3px;padding:38px 30px 30px;
-    text-align:center;box-shadow:0 18px 40px -24px var(--shadow);position:relative}
-  header:before,header:after{content:"";position:absolute;left:30px;right:30px;height:1px;background:var(--brass-pale)}
-  header:before{top:16px} header:after{bottom:16px}
-  h1{font-weight:400;font-size:40px;line-height:1.08;margin:14px 0 10px;letter-spacing:-.015em}
-  h1 em{font-style:italic;color:var(--brass-deep)}
-  .rule-orn{color:var(--brass);letter-spacing:.5em;font-size:12px;margin:6px 0 12px}
-  header p{margin:0 auto;max-width:48ch;color:var(--ink-soft);font-size:15px}
-
-  /* bascule alternance / job */
-  .modes{display:inline-flex;gap:4px;margin:22px auto 4px;padding:4px;border:1px solid var(--brass-pale);border-radius:999px;background:var(--cream)}
-  .mode{font-family:"Courier New",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
-    border:0;background:transparent;color:var(--ink-soft);padding:9px 20px;border-radius:999px;transition:all .16s ease}
-  .mode:hover{color:var(--ink)}
-  .mode[aria-pressed="true"]{background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep));color:var(--on-brass);
-    box-shadow:0 8px 16px -10px var(--glow-brass)}
-
-  /* sommaire */
-  .toc{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;margin:18px auto 0;font-family:"Courier New",monospace;
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-  .toc a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted transparent;padding:2px 0}
-  .toc a:hover{color:var(--brass-deep);border-bottom-color:var(--brass)}
-  .toc-due{display:inline-block;margin-left:6px;min-width:18px;padding:1px 6px;border-radius:999px;background:var(--brass-deep);
-    color:var(--on-brass);font-size:10px;letter-spacing:0;text-align:center;vertical-align:1px}
-
-  section{margin-top:42px;scroll-margin-top:16px}
-  .sec-head{text-align:center;margin-bottom:22px}
-  .sec-head h2{font-weight:400;font-size:24px;margin:6px 0 0}
-  .hint{text-align:center;color:var(--ink-soft);font-size:13px;margin:6px auto 20px;max-width:60ch}
-
-  .presets{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;align-items:baseline;margin:0 auto 18px;max-width:640px}
-  .presets-label{font-family:"Courier New",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .preset{font-family:"Courier New",monospace;font-size:12px;cursor:pointer;border:0;background:transparent;color:var(--brass-deep);
-    padding:3px 0;border-bottom:1px dotted var(--brass);transition:color .16s ease}
-  .preset:hover{color:var(--ink);border-bottom-style:solid}
-  .preset[aria-pressed="true"]{color:var(--ink);border-bottom:1px solid var(--ink)}
-
-  .tags{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
-  .tag{font-family:"Courier New",monospace;font-size:13px;border:1px solid var(--brass-pale);background:var(--paper);
-    color:var(--ink-soft);padding:9px 17px;border-radius:999px;cursor:pointer;transition:all .16s ease}
-  .tag:hover{border-color:var(--brass);color:var(--ink);box-shadow:0 6px 14px -8px var(--shadow)}
-  .tag[aria-pressed="true"]{background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep));border-color:var(--brass-deep);
-    color:var(--on-brass);box-shadow:0 8px 16px -10px var(--glow-brass)}
-  .tag-group{display:inline-flex}
-  .tag-group .tag{border-style:dashed;border-right:0;border-radius:999px 0 0 999px;padding-right:9px}
-  .tag-group .kill{font-family:"Courier New",monospace;font-size:15px;line-height:1;cursor:pointer;border:1px dashed var(--brass-pale);
-    border-left:0;border-radius:0 999px 999px 0;background:var(--paper);color:var(--ink-soft);padding:0 14px 0 6px;transition:all .16s ease}
-  .tag-group .kill:hover{color:var(--ink)}
-  .tag-group.on .tag,.tag-group.on .kill{border-style:solid}
-  .tag-group.on .kill{background:var(--brass-deep);border-color:var(--brass-deep);color:var(--on-brass)}
-
-  .warn{max-width:520px;margin:16px auto 0;text-align:center;font-family:"Courier New",monospace;font-size:12px;
-    color:var(--brass-deep);border:1px dashed var(--brass);border-radius:2px;padding:9px 14px;background:var(--wash)}
-
-  .addrow{display:flex;gap:10px;margin:22px auto 0;max-width:430px;flex-wrap:wrap}
-  input[type=text],.field{font-family:"Courier New",monospace;font-size:16px;padding:10px 14px;border:1px solid var(--brass-pale);
-    border-radius:2px;background:var(--paper);color:var(--ink);min-width:0}
-  .addrow input[type=text]{flex:1 1 200px}
-  input::placeholder,textarea::placeholder{color:var(--placeholder)}
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px rgba(168,137,79,.18)}
-  button:focus-visible,a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-
-  .btn{font-family:"Courier New",monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
-    border:1px solid var(--brass);background:var(--paper);color:var(--brass-deep);padding:11px 20px;border-radius:2px;transition:all .16s ease}
-  .btn:hover{background:var(--brass);color:var(--on-brass);box-shadow:0 10px 20px -12px var(--shadow)}
-  .linkbtn{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;
-    border:0;background:transparent;color:var(--brass-deep);padding:4px 2px;border-bottom:1px dotted var(--brass)}
-  .linkbtn:hover{color:var(--ink);border-bottom-style:solid}
-  .linkbtn.danger:hover{color:#b0473a;border-bottom-color:#b0473a}
-
-  .dd{position:relative;max-width:400px;margin:0 auto}
-  .dd-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:Georgia,serif;
-    font-size:17px;cursor:pointer;border:1px solid var(--brass-pale);background:var(--paper);color:var(--ink-soft);
-    padding:15px 20px;border-radius:2px;transition:all .16s ease;box-shadow:0 10px 24px -20px var(--shadow)}
-  .dd-trigger:hover{border-color:var(--brass)}
-  .dd-trigger[data-chosen="1"]{color:var(--ink);border-color:var(--brass);background:var(--paper-hi)}
-  .dd-caret{color:var(--brass);font-size:12px;transition:transform .16s ease}
-  .dd-trigger[aria-expanded="true"] .dd-caret{transform:rotate(180deg)}
-  .dd-panel{position:absolute;z-index:20;top:calc(100% + 8px);left:0;right:0;background:var(--paper);
-    border:1px solid var(--brass-pale);border-radius:2px;box-shadow:0 26px 50px -22px var(--shadow-strong);
-    max-height:320px;display:none;flex-direction:column;overflow:hidden}
-  .dd-panel.open{display:flex}
-  .dd-filter{margin:10px;flex:0 0 auto}
-  .dd-list{overflow-y:auto;padding-bottom:6px}
-  .dd-opt{display:block;width:100%;text-align:left;font-family:Georgia,serif;font-size:15px;border:0;background:transparent;
-    color:var(--ink);padding:10px 18px;cursor:pointer;transition:background .12s}
-  .dd-opt:hover,.dd-opt:focus{background:var(--cream-deep);outline:none}
-  .dd-opt[aria-selected="true"]{color:var(--brass-deep);font-style:italic}
-  .dd-all{border-bottom:1px solid var(--brass-pale);font-style:italic;color:var(--brass-deep)}
-  .dd-custom{border-top:1px dashed var(--brass-pale);font-family:"Courier New",monospace;font-size:13px;color:var(--brass-deep)}
-  .dd-hint{text-align:center;font-family:"Courier New",monospace;font-size:11px;color:var(--muted);margin-top:10px}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-  .card{border:1px solid var(--brass-pale);background:var(--paper);padding:17px 18px;cursor:pointer;text-align:left;
-    font:inherit;color:inherit;display:flex;gap:13px;align-items:flex-start;border-radius:3px;transition:all .18s ease;
-    box-shadow:0 10px 26px -22px var(--shadow)}
-  .card:hover{transform:translateY(-2px);border-color:var(--brass);box-shadow:0 18px 32px -22px var(--shadow)}
-  .card[aria-pressed="true"]{border-color:var(--brass);background:var(--paper-hi)}
-  .card[aria-pressed="false"]{opacity:.72}
-  .card[aria-pressed="false"]:hover{opacity:1}
-  .box{width:17px;height:17px;flex:0 0 auto;margin-top:4px;border-radius:50%;border:1px solid var(--brass);position:relative;transition:all .18s ease}
-  .card[aria-pressed="true"] .box{background:var(--brass-deep);border-color:var(--brass-deep)}
-  .card[aria-pressed="true"] .box:after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;
-    border:solid var(--on-brass);border-width:0 1.6px 1.6px 0;transform:rotate(42deg)}
-  .card b{display:block;font-weight:400;font-size:17px;margin-bottom:4px}
-  .desc{display:block;font-family:"Courier New",monospace;font-size:11.5px;line-height:1.5;color:var(--ink-soft)}
-  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .badge{display:inline-block;font-family:"Courier New",monospace;font-size:9.5px;letter-spacing:.14em;line-height:1.5;
-    text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--brass-pale);color:var(--brass-deep);white-space:nowrap}
-  .badge.pre{background:var(--badge)}
-  .badge.part{background:var(--badge);border-style:dashed}
-  .badge.fresh,.badge.good{border-color:var(--sage);color:var(--sage-deep);background:var(--sage-wash)}
-  .badge.here{border-color:var(--brass);background:var(--badge)}
-  .badge.due{border-color:var(--brass-deep);background:var(--brass-deep);color:var(--on-brass)}
-  .grid-actions{display:flex;gap:18px;justify-content:center;margin-top:16px}
-
-  .opts{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:6px}
-  .opt-note{font-family:"Courier New",monospace;font-size:11px;color:var(--muted);text-align:center}
-  .go{margin-top:20px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
-  .btn-go{background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep));border-color:var(--brass-deep);color:var(--on-brass);
-    padding:16px 38px;font-size:13px;box-shadow:0 16px 30px -16px var(--glow-brass)}
-  .btn-go:hover{background:var(--ink);border-color:var(--ink);color:var(--on-brass)}
-  .err{max-width:560px;margin:22px auto 0;border:1px solid var(--brass);border-left:3px solid var(--brass-deep);
-    background:var(--wash);padding:13px 17px;font-size:14px;border-radius:2px}
-
-  #results{margin-top:38px}
-  .notice{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:center;margin-bottom:18px;padding:10px 14px;
-    border:1px dashed var(--brass);background:var(--wash);border-radius:2px;font-family:"Courier New",monospace;font-size:12px;color:var(--brass-deep);text-align:center}
-  .recap{text-align:center;font-family:"Courier New",monospace;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);
-    padding-bottom:14px;margin-bottom:8px;border-bottom:1px solid var(--brass-pale)}
-  .recap strong{font-weight:normal;color:var(--brass-deep)}
-  .res-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;margin-bottom:20px}
-  .counter{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-  .counter b{font-weight:normal;color:var(--sage-deep)}
-
-  .link{position:relative;display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--brass-pale);
-    background:var(--paper);padding:16px 19px;margin-bottom:11px;text-decoration:none;color:var(--ink);border-radius:3px;
-    transition:all .18s ease;box-shadow:0 10px 26px -24px var(--shadow)}
-  .link:hover{transform:translateY(-2px);border-color:var(--brass);box-shadow:0 18px 34px -22px var(--shadow)}
-  .link b{font-weight:400;font-size:17px}
-  .link .note{display:block;font-family:"Courier New",monospace;font-size:11px;color:var(--brass-deep);margin-top:3px}
-  .link small{display:block;font-family:"Courier New",monospace;font-size:10.5px;color:var(--muted);word-break:break-all;margin-top:3px}
-  .link-right{display:flex;align-items:center;gap:10px;flex:0 0 auto}
-  .arrow{font-size:17px;color:var(--brass);flex:0 0 auto}
-  .with-copy .link{margin-bottom:6px}
-
-  /* état « déjà ouvert » */
-  .link.seen{background:var(--sage-wash);border-color:var(--sage);box-shadow:0 10px 26px -24px var(--sage-shadow)}
-  .link.seen b{color:var(--sage-deep)}
-  .link.seen .note{color:var(--sage-deep)}
-  .link.seen small{color:var(--sage-muted)}
-  .link.seen .arrow{display:none}
-  .link.seen:hover{border-color:var(--sage-deep);box-shadow:0 18px 34px -22px var(--sage-shadow)}
-  .seen-tag{display:none;flex:0 0 auto;align-items:center;gap:6px;font-family:"Courier New",monospace;font-size:10.5px;
-    letter-spacing:.12em;text-transform:uppercase;color:var(--on-sage);background:var(--sage-deep);
-    border-radius:999px;padding:5px 11px;white-space:nowrap}
-  .link.seen .seen-tag{display:inline-flex}
-
-  .copybar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px 19px}
-  .copy-btn{font-family:"Courier New",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-    cursor:pointer;border:1px solid var(--brass-pale);background:var(--paper);color:var(--brass-deep);
-    padding:6px 12px;border-radius:999px;transition:all .16s ease;white-space:nowrap}
-  .copy-btn:hover{border-color:var(--brass);background:var(--badge)}
-  .copy-btn.copied,.copy-btn.done{background:var(--sage-deep);border-color:var(--sage-deep);color:var(--on-sage)}
-
-  /* chapitre IV : employeurs */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 auto 20px}
-  .chip{font-family:"Courier New",monospace;font-size:11.5px;letter-spacing:.04em;cursor:pointer;border:1px solid var(--brass-pale);
-    background:var(--paper);color:var(--ink-soft);padding:6px 13px;border-radius:999px;transition:all .16s ease}
-  .chip:hover{border-color:var(--brass);color:var(--ink)}
-  .chip[aria-pressed="true"]{border-color:var(--brass-deep);color:var(--brass-deep);background:var(--badge)}
-  .chip .n{opacity:.65;margin-left:5px}
-  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-  .target{border:1px solid var(--brass-pale);background:var(--paper);padding:16px 18px;border-radius:3px;display:flex;flex-direction:column;gap:5px;
-    box-shadow:0 10px 26px -22px var(--shadow);transition:border-color .18s ease}
-  .target.near{border-color:var(--brass)}
-  .target.seen{border-color:var(--sage);background:var(--sage-wash)}
-  .t-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-  .t-head b{font-weight:400;font-size:17px;line-height:1.3}
-  .t-where{font-family:"Courier New",monospace;font-size:10.5px;letter-spacing:.06em;color:var(--muted)}
-  .t-actions{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:auto;padding-top:10px}
-  .t-link{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-deep);
-    text-decoration:none;border-bottom:1px solid var(--brass);padding:3px 0;margin-right:auto}
-  .t-link:hover{color:var(--ink)}
-  .target.seen .t-link{color:var(--sage-deep);border-bottom-color:var(--sage)}
-  .t-btns{display:flex;gap:8px;flex-wrap:wrap}
-
-  /* chapitre V : suivi */
-  .trk-summary{text-align:center;font-family:"Courier New",monospace;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:-6px 0 16px}
-  .trk-summary b{font-weight:normal;color:var(--brass-deep)}
-  .trk-add{display:flex;justify-content:center;margin-bottom:20px}
-  .trk-form{border:1px solid var(--brass);background:var(--paper);padding:20px 20px 18px;border-radius:3px;margin:0 auto 22px;max-width:660px;
-    box-shadow:0 18px 40px -26px var(--shadow)}
-  .trk-form h3{font-weight:400;font-size:19px;margin:0 0 14px;text-align:center}
-  .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
-  .f-grid label{display:flex;flex-direction:column;gap:5px;font-family:"Courier New",monospace;font-size:10.5px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--ink-soft)}
-  .f-grid .full{grid-column:1/-1}
-  .field{width:100%;padding:9px 12px;background:var(--paper-hi);letter-spacing:0;text-transform:none}
-  select.field{cursor:pointer}
-  textarea.field{resize:vertical;min-height:62px;font-family:Georgia,serif;font-size:15px;line-height:1.5}
-  .f-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
-  .f-actions .btn-go{padding:11px 26px}
-  .f-err{color:var(--brass-deep);font-family:"Courier New",monospace;font-size:12px;margin:10px 0 0}
-  .app{border:1px solid var(--brass-pale);background:var(--paper);border-radius:3px;padding:15px 18px;margin-bottom:11px;
-    box-shadow:0 10px 26px -24px var(--shadow)}
-  .app.due{border-color:var(--brass);border-left:3px solid var(--brass-deep);background:var(--paper-hi)}
-  .app.good{border-color:var(--sage);border-left:3px solid var(--sage-deep)}
-  .app.closed{opacity:.62}
-  .app-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px 14px;flex-wrap:wrap}
-  .app-title{min-width:0;flex:1 1 260px}
-  .app-title b{font-weight:400;font-size:17px}
-  .app-title .role{color:var(--ink-soft);font-style:italic}
-  .app-meta{font-family:"Courier New",monospace;font-size:11px;color:var(--muted);margin-top:3px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
-  .app-note{font-size:14px;color:var(--ink-soft);margin-top:8px;white-space:pre-wrap;overflow-wrap:anywhere}
-  .app-actions{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:12px}
-  .app-actions a{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-deep);
-    text-decoration:none;border-bottom:1px solid var(--brass);padding:3px 0}
-  .status{font-family:"Courier New",monospace;font-size:13px;padding:6px 10px;border:1px solid var(--brass-pale);border-radius:999px;
-    background:var(--paper-hi);color:var(--ink);cursor:pointer;flex:0 0 auto}
-  .status[data-s="interview"],.status[data-s="offer"]{border-color:var(--sage);color:var(--sage-deep);background:var(--sage-wash)}
-  .status[data-s="sent"],.status[data-s="followup"]{border-color:var(--brass)}
-  .trk-empty{text-align:center;color:var(--ink-soft);font-style:italic;font-size:15px;padding:24px 18px;border:1px dashed var(--brass-pale);border-radius:3px}
-  .trk-io{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;margin-top:22px}
-  .trk-note{text-align:center;font-family:"Courier New",monospace;font-size:11px;color:var(--muted);margin-top:10px}
-
-  footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--brass-pale);font-family:"Courier New",monospace;
-    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-  footer .linkbtn{font-size:10.5px;letter-spacing:.2em;color:var(--faint);border-bottom-color:var(--faint)}
-  noscript div{max-width:560px;margin:22px auto 0;border:1px solid var(--brass);padding:13px 17px;font-size:14px;text-align:center}
-
-  @media (max-width:560px){
-    h1{font-size:30px} header{padding:30px 18px 26px} .btn-go{width:100%}
-    .toc{gap:6px 14px;letter-spacing:.1em}
-    .card{padding:14px 15px} .card .desc{font-size:11px}
-    .link{padding:14px 15px} .link small{display:none} .copybar{margin-left:15px}
-    .seen-tag{padding:4px 9px;letter-spacing:.08em}
-    .f-grid{grid-template-columns:1fr}
-    .status,.field{font-size:16px}
-    .f-actions{flex-direction:column-reverse} .f-actions .btn{width:100%}
-  }
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;transform:none!important}}
-</style>
+<link rel="stylesheet" href="css/anim.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/anim.js" defer></script>
+<script src="js/app.js" defer></script>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="eyebrow" id="eyebrow">Carnet de recherche · Master 2</div>
-    <h1>Chasseur <em id="h1em">d'alternance</em></h1>
-    <div class="rule-orn" aria-hidden="true">✦ ✦ ✦</div>
-    <p id="lede">Événementiel, palaces et 5 étoiles. Choisis tes mots-clés, une ville, tes plateformes. L'outil fabrique les recherches à ta place (après il faut quand même l'adapter).</p>
-    <div class="modes" role="group" aria-label="Type de recherche">
-      <button type="button" class="mode" data-mode="alt" aria-pressed="true">Alternance</button>
-      <button type="button" class="mode" data-mode="job" aria-pressed="false">Job</button>
+<a class="skip" href="#recherche">Aller à la recherche</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" data-scroll>
+      <svg class="wordmark-ticket" viewBox="0 0 28 18" aria-hidden="true"><path d="M3 1h22a2 2 0 0 1 2 2v4a2 2 0 0 0 0 4v4a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-4a2 2 0 0 0 0-4V3a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19 3.5v11" stroke="currentColor" stroke-width="1.4" stroke-dasharray="1.6 1.8"/><circle cx="23" cy="9" r="1.8" fill="#E2546A"/></svg>
+      Chasseur
+    </a>
+    <nav class="nav-desk" aria-label="Sections">
+      <a class="link-sweep" href="#recherche" data-scroll>Recherche</a>
+      <a class="link-sweep" href="#employeurs" data-scroll>Employeurs</a>
+      <a class="link-sweep" href="#suivi" data-scroll>Suivi<span class="due-badge" data-due hidden></span></a>
+    </nav>
+    <button class="burger" type="button" data-menu-toggle aria-controls="menu" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="menu-panel" id="menu" aria-label="Menu">
+  <ul>
+    <li><a href="#recherche" data-scroll>Recherche</a></li>
+    <li><a href="#employeurs" data-scroll>Employeurs</a></li>
+    <li><a href="#suivi" data-scroll>Suivi<span class="due-badge" data-due hidden></span></a></li>
+    <li><button class="theme-btn menu-theme" type="button">Thème : auto</button></li>
+  </ul>
+</nav>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap">
+      <h1 class="hero-title" id="heroTitle">
+        <span class="h-line" data-split="chars" data-split-step="32">Chasseur</span>
+        <span class="h-line" id="h1b" data-split="chars" data-split-step="32" data-delay="200">d'alternance</span>
+      </h1>
+      <p class="hero-lede" id="lede">Événementiel, palaces et 5 étoiles. Choisis tes mots-clés, une ville et tes plateformes : l'outil fabrique les recherches à ta place (après il faut quand même l'adapter).</p>
+      <div class="modes" role="group" aria-label="Ce que tu cherches">
+        <button type="button" class="mode" data-mode="alt" aria-pressed="true">Une alternance</button>
+        <button type="button" class="mode" data-mode="job" aria-pressed="false">Un job</button>
+      </div>
     </div>
-  </header>
-
-  <nav class="toc" aria-label="Sommaire">
-    <a href="#ch-mots">I · Mots-clés</a>
-    <a href="#ch-ville">II · Ville</a>
-    <a href="#ch-plateformes">III · Plateformes</a>
-    <a href="#cibles">IV · Viser direct</a>
-    <a href="#suivi">V · Suivi<span class="toc-due" id="tocDue" hidden></span></a>
-  </nav>
-
-  <noscript><div>Cet outil a besoin de JavaScript pour fabriquer les liens.</div></noscript>
-
-  <section id="ch-mots">
-    <div class="sec-head"><div class="eyebrow">Chapitre I</div><h2>Mots-clés</h2></div>
-    <p class="hint">Clique pour activer ou désactiver. Les mots dorés composent la recherche. Les raccourcis activent une combinaison toute prête.</p>
-    <div class="presets" id="presets"></div>
-    <div class="tags" id="tags"></div>
-    <div class="warn" id="warn" hidden></div>
-    <div class="addrow">
-      <input type="text" id="newTag" placeholder="Ajouter un mot-clé…" maxlength="80" aria-label="Nouveau mot-clé" autocomplete="off" enterkeyhint="done">
-      <button class="btn" id="addTag" type="button">Ajouter</button>
+    <div class="hero-band" data-marquee="70" aria-hidden="true">
+      <span>Oetker Collection</span><span>Four Seasons</span><span>Cheval Blanc</span><span>Dorchester Collection</span>
+      <span>Airelles</span><span>Monte-Carlo SBM</span><span>The Peninsula</span><span>Mandarin Oriental</span>
+      <span>Rosewood</span><span>Maisons Pariente</span><span>Hopscotch</span><span>Auditoire</span>
+      <span>Comexposium</span><span>GL events</span><span>Potel et Chabot</span><span>Palais des Festivals</span><span>Grimaldi Forum</span>
     </div>
   </section>
 
-  <section id="ch-ville">
-    <div class="sec-head"><div class="eyebrow">Chapitre II</div><h2>Ville</h2></div>
-    <div class="dd" id="dd">
-      <button class="dd-trigger" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ddPanel">
-        <span id="ddLabel">Choisir une ville</span><span class="dd-caret" aria-hidden="true">▾</span>
+  <noscript><p class="noscript wrap">Cet outil a besoin de JavaScript pour préparer les liens et suivre tes candidatures.</p></noscript>
+
+  <section class="sec" id="recherche" aria-labelledby="rechercheTitle">
+    <div class="wrap">
+      <div class="sec-intro">
+        <h2 id="rechercheTitle">Prépare ta recherche</h2>
+        <p>Trois réglages, puis tous les liens d'un coup.</p>
+      </div>
+
+      <div class="builder">
+        <ol class="steps">
+          <li class="step">
+            <span class="step-n" aria-hidden="true">1</span>
+            <div class="step-body">
+              <h3>Mots-clés</h3>
+              <p class="step-hint">Les mots actifs composent la recherche. Les sites cherchent tous les mots à la fois : deux ou trois suffisent.</p>
+              <div class="presets" id="presets"></div>
+              <div class="chips" id="tags"></div>
+              <p class="warn" id="warn" role="status" hidden></p>
+              <form class="add-row" id="addForm">
+                <label class="sr-only" for="newTag">Nouveau mot-clé</label>
+                <input class="field" type="text" id="newTag" placeholder="Ajouter un mot-clé" maxlength="80" autocomplete="off" enterkeyhint="done">
+                <button class="btn btn-ghost" type="submit">Ajouter</button>
+              </form>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step-n" aria-hidden="true">2</span>
+            <div class="step-body">
+              <h3>Ville</h3>
+              <p class="step-hint">Une ville de la liste, une autre que tu tapes, ou toute la France.</p>
+              <div class="dd" id="dd">
+                <button class="dd-trigger" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ddPanel">
+                  <span id="ddLabel">Choisir une ville</span>
+                  <svg class="dd-caret" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+                <div class="dd-panel" id="ddPanel">
+                  <label class="sr-only" for="ddFilter">Filtrer ou taper une ville</label>
+                  <input class="field dd-filter" type="text" id="ddFilter" placeholder="Filtrer ou taper une ville" autocomplete="off" enterkeyhint="go">
+                  <div class="dd-list" id="ddList" role="listbox" aria-label="Villes"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step-n" aria-hidden="true">3</span>
+            <div class="step-body">
+              <h3>Plateformes</h3>
+              <p class="step-hint">Une recherche préremplie arrive avec tes mots-clés et ta ville. Sur les autres sites, les filtres se règlent sur place : des boutons « Copier » t'attendent avec chaque lien.</p>
+              <div class="platforms" id="platforms"></div>
+              <div class="row-actions">
+                <button class="btn-text link-sweep" id="allOn" type="button">Tout cocher</button>
+                <button class="btn-text link-sweep" id="allOff" type="button">Tout décocher</button>
+              </div>
+              <button class="switch-row" id="recent" type="button" role="switch" aria-checked="false">
+                <span class="switch" aria-hidden="true"></span>
+                <span>
+                  <span class="switch-label">Seulement les offres des 7 derniers jours</span>
+                  <span class="switch-hint">Sur Indeed, LinkedIn et Google. Indeed et LinkedIn trient aussi par date.</span>
+                </span>
+              </button>
+              <button class="btn-text link-sweep reset-btn reset-mobile" type="button">Réinitialiser la recherche</button>
+            </div>
+          </li>
+        </ol>
+
+        <aside class="pass" id="pass" aria-label="Résumé de ta recherche">
+          <div class="pass-main">
+            <p class="pass-title">Ta recherche</p>
+            <p class="pass-kw" id="passKw">Événementiel, Alternance</p>
+            <p class="pass-city" id="passCity">Aucune ville choisie</p>
+            <p class="pass-meta" id="passMeta"></p>
+          </div>
+          <div class="pass-stub">
+            <button class="btn btn-primary" id="generate" type="button" data-ripple>Générer les liens</button>
+            <button class="btn-text link-sweep reset-btn reset-desk" type="button">Réinitialiser</button>
+          </div>
+          <p class="err" id="err" role="alert" hidden></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec results-sec" id="liens" aria-labelledby="liensTitle" hidden>
+    <div class="wrap" id="results" aria-live="polite"></div>
+  </section>
+
+  <section class="sec houses-sec" id="employeurs" aria-labelledby="employeursTitle">
+    <div class="wrap">
+      <div class="sec-intro">
+        <h2 id="employeursTitle">Employeurs à viser</h2>
+        <p>Les maisons, agences et lieux qui comptent dans l'événementiel de luxe, avec leur page d'offres. Ceux proches de ta ville passent en premier.</p>
+      </div>
+      <div class="chips filters" id="tFilters" role="group" aria-label="Type d'employeur"></div>
+      <div class="houses" id="targets"></div>
+      <button class="btn btn-ghost more-btn" id="tMore" type="button" hidden>Voir les autres</button>
+    </div>
+  </section>
+
+  <section class="sec track-sec" id="suivi" aria-labelledby="suiviTitle">
+    <div class="wrap">
+      <div class="sec-intro">
+        <h2 id="suiviTitle">Tes candidatures</h2>
+        <p>Note chaque candidature envoyée. Après 7 jours sans réponse, elle passe « à relancer » avec un message prêt à copier.</p>
+      </div>
+      <div class="pipeline" id="pipeline" hidden></div>
+      <div class="track-tools">
+        <div class="chips filters" id="trkFilters" role="group" aria-label="Filtrer les candidatures"></div>
+        <button class="btn btn-primary" id="trkAdd" type="button" data-ripple>Ajouter une candidature</button>
+      </div>
+      <div class="apps" id="trkList"></div>
+      <div class="track-io">
+        <button class="btn-text link-sweep" id="trkCsv" type="button">Exporter pour Excel</button>
+        <button class="btn-text link-sweep" id="trkSave" type="button">Sauvegarder dans un fichier</button>
+        <button class="btn-text link-sweep" id="trkLoad" type="button">Restaurer une sauvegarde</button>
+        <input type="file" id="trkFile" accept="application/json,.json" hidden>
+      </div>
+      <p class="small" id="trkStore">Ton suivi reste dans ce navigateur, sur cet appareil. Sauvegarde-le de temps en temps.</p>
+    </div>
+  </section>
+
+  <section class="sec tips-sec" id="astuces" aria-labelledby="astucesTitle">
+    <div class="wrap narrow">
+      <h2 id="astucesTitle">Bien utiliser l'outil</h2>
+      <div class="acc-list" data-acc-single>
+        <div data-acc>
+          <button class="acc-head" type="button">Pourquoi pas plus de trois mots-clés ?<span class="acc-icon" aria-hidden="true">+</span></button>
+          <div class="acc-body"><div><p>Les sites cherchent tous les mots à la fois. Au-delà de trois, la plupart des offres pertinentes disparaissent. Mieux vaut deux recherches courtes qu'une longue : les raccourcis sont faits pour ça.</p></div></div>
+        </div>
+        <div data-acc>
+          <button class="acc-head" type="button">Quand relancer une candidature ?<span class="acc-icon" aria-hidden="true">+</span></button>
+          <div class="acc-body"><div><p>Une semaine après l'envoi, sans réponse. Le suivi te le signale et prépare le message. Si la relance reste sans réponse dix jours plus tard, la candidature est marquée « toujours sans réponse » : à toi de voir si tu insistes.</p></div></div>
+        </div>
+        <div data-acc>
+          <button class="acc-head" type="button">Où sont gardées mes candidatures ?<span class="acc-icon" aria-hidden="true">+</span></button>
+          <div class="acc-body"><div><p>Uniquement dans ce navigateur, sur cet appareil : elles ne partent nulle part. Pour passer du téléphone à l'ordinateur, utilise « Sauvegarder dans un fichier » d'un côté, puis « Restaurer une sauvegarde » de l'autre.</p></div></div>
+        </div>
+        <div data-acc>
+          <button class="acc-head" type="button">Installer le site sur mon téléphone<span class="acc-icon" aria-hidden="true">+</span></button>
+          <div class="acc-body"><div><p>Sur iPhone : bouton Partager de Safari, puis « Sur l'écran d'accueil ». Sur Android : menu de Chrome, puis « Ajouter à l'écran d'accueil ». Le site s'ouvre ensuite comme une appli.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <p>Fait pour chercher vite. J'ajouterai encore d'autres sites au fur et à mesure.</p>
+    <button class="theme-btn btn-text link-sweep" type="button">Thème : auto</button>
+  </div>
+</footer>
+
+<dialog class="anim sheet" id="appDialog" aria-labelledby="dlgTitle">
+  <form id="trkForm" novalidate>
+    <div class="sheet-head">
+      <h2 id="dlgTitle">Nouvelle candidature</h2>
+      <button class="sheet-close" type="button" id="trkCancelX" aria-label="Fermer">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8"/></svg>
       </button>
-      <div class="dd-panel" id="ddPanel">
-        <input type="text" class="dd-filter" id="ddFilter" placeholder="Filtrer ou taper une ville…" aria-label="Filtrer les villes" autocomplete="off" enterkeyhint="go">
-        <div class="dd-list" id="ddList" role="listbox" aria-label="Villes"></div>
-      </div>
     </div>
-    <p class="dd-hint">Ville absente de la liste ? Tape-la dans le filtre.</p>
-  </section>
-
-  <section id="ch-plateformes">
-    <div class="sec-head"><div class="eyebrow">Chapitre III</div><h2>Plateformes</h2></div>
-    <p class="hint">« Préremplie » : les mots-clés et la ville arrivent déjà dans la recherche. « Mots-clés » : la ville se règle sur place. « À filtrer » : le site n'accepte pas de recherche par lien, les filtres se règlent sur place.</p>
-    <div class="grid" id="platforms"></div>
-    <div class="grid-actions">
-      <button class="linkbtn" id="allOn" type="button">Tout cocher</button>
-      <button class="linkbtn" id="allOff" type="button">Tout décocher</button>
+    <div class="f-grid">
+      <label class="f">Entreprise<input class="field" type="text" id="fCompany" maxlength="80" autocomplete="off" required></label>
+      <label class="f">Poste<input class="field" type="text" id="fRole" maxlength="80" autocomplete="off"></label>
+      <label class="f">Ville<input class="field" type="text" id="fCity" maxlength="60" autocomplete="off"></label>
+      <label class="f">Statut<select class="field" id="fStatus"></select></label>
+      <label class="f">Date d'envoi<input class="field" type="date" id="fDate"></label>
+      <label class="f">Lien de l'offre<input class="field" type="url" id="fUrl" maxlength="500" placeholder="https://" autocomplete="off"></label>
+      <label class="f full">Note<textarea class="field" id="fNote" rows="3" maxlength="500" placeholder="Contact, salaire, impressions…"></textarea></label>
     </div>
-  </section>
-
-  <div class="opts">
-    <button class="tag" id="recent" type="button" aria-pressed="false">Offres de moins de 7 jours</button>
-    <span class="opt-note">Appliqué sur Indeed, LinkedIn et Google · Indeed et LinkedIn trient aussi par date</span>
-  </div>
-  <div class="go">
-    <button class="btn btn-go" id="generate" type="button">Générer les liens</button>
-    <button class="btn" id="reset" type="button">Réinitialiser</button>
-  </div>
-  <div class="err" id="err" role="alert" hidden></div>
-
-  <section id="results" aria-live="polite"></section>
-
-  <section id="cibles">
-    <div class="sec-head"><div class="eyebrow">Chapitre IV</div><h2>Viser direct</h2></div>
-    <p class="hint">Les maisons, agences et lieux qui comptent dans l'événementiel de luxe. Ceux proches de ta ville remontent en premier. « Suivre » les ajoute au carnet de candidatures.</p>
-    <div class="filters" id="tFilters" role="group" aria-label="Type d'employeur"></div>
-    <div class="tgrid" id="targets"></div>
-    <div class="grid-actions"><button class="btn" id="tMore" type="button" hidden>Voir les autres</button></div>
-  </section>
-
-  <section id="suivi">
-    <div class="sec-head"><div class="eyebrow">Chapitre V</div><h2>Suivi des candidatures</h2></div>
-    <p class="hint">Note chaque candidature envoyée. Après 7 jours sans réponse, elle passe « à relancer » avec un message prêt à copier.</p>
-    <div class="trk-summary" id="trkSummary"></div>
-    <div class="filters" id="trkFilters" role="group" aria-label="Filtrer les candidatures"></div>
-    <div class="trk-add"><button class="btn" id="trkAdd" type="button">+ Ajouter une candidature</button></div>
-
-    <form class="trk-form" id="trkForm" hidden novalidate>
-      <h3 id="trkFormTitle">Nouvelle candidature</h3>
-      <div class="f-grid">
-        <label>Entreprise *<input class="field" type="text" id="fCompany" maxlength="80" autocomplete="off"></label>
-        <label>Poste<input class="field" type="text" id="fRole" maxlength="80" autocomplete="off"></label>
-        <label>Ville<input class="field" type="text" id="fCity" maxlength="60" autocomplete="off"></label>
-        <label>Statut<select class="field" id="fStatus"></select></label>
-        <label>Date d'envoi<input class="field" type="date" id="fDate"></label>
-        <label>Lien de l'offre<input class="field" type="url" id="fUrl" maxlength="500" placeholder="https://…" autocomplete="off"></label>
-        <label class="full">Note<textarea class="field" id="fNote" rows="2" maxlength="500" placeholder="Contact, salaire, impressions…"></textarea></label>
-      </div>
-      <p class="f-err" id="fErr" role="alert" hidden></p>
-      <div class="f-actions">
-        <button class="btn" id="trkCancel" type="button">Annuler</button>
-        <button class="btn btn-go" type="submit">Enregistrer</button>
-      </div>
-    </form>
-
-    <div class="notice" id="trkNotice" role="status" hidden></div>
-    <div id="trkList"></div>
-
-    <div class="trk-io">
-      <button class="linkbtn" id="trkCsv" type="button">Exporter pour Excel</button>
-      <button class="linkbtn" id="trkSave" type="button">Sauvegarder (fichier)</button>
-      <button class="linkbtn" id="trkLoad" type="button">Restaurer une sauvegarde</button>
-      <input type="file" id="trkFile" accept="application/json,.json" hidden>
+    <p class="err" id="fErr" role="alert" hidden></p>
+    <div class="sheet-actions">
+      <button class="btn btn-ghost" type="button" id="trkCancel">Annuler</button>
+      <button class="btn btn-primary" type="submit" id="trkSubmit">Enregistrer</button>
     </div>
-    <p class="trk-note" id="trkStore">Ton suivi reste dans ce navigateur, sur cet appareil. Sauvegarde-le de temps en temps.</p>
-  </section>
+  </form>
+</dialog>
 
-  <footer>
-    <span>Fait pour chercher vite. J'ajouterai encore d'autres sites au fur et à mesure.</span>
-    <span>Les liens ouverts passent au vert jusqu'à minuit · <button class="linkbtn" id="themeBtn" type="button">Thème : auto</button></span>
-  </footer>
-</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  try {
-    /* ---------- OUTILS ---------- */
-    function $(id){ return document.getElementById(id); }
-    function enc(s){ return encodeURIComponent(s); }
-    function fold(s){ return String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
-    function slug(s){ return fold(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
-    function pick(v, mode){ return (v && typeof v === 'object') ? v[mode] : v; }
-    function el(tag, cls, text){
-      var e = document.createElement(tag);
-      if (cls) e.className = cls;
-      if (text != null) e.textContent = text;
-      return e;
-    }
-    function btn(cls, text){ var b = el('button', cls, text); b.type = 'button'; return b; }
-    function pad(n){ return ('0' + n).slice(-2); }
-    function isoOf(d){ return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-    function today(){ return isoOf(new Date()); }
-    function parseIso(s){ var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
-    function daysSince(s){
-      if (!s) return 0;
-      var t = new Date(); t.setHours(0,0,0,0);
-      return Math.round((t - parseIso(s)) / 86400000);
-    }
-    function fmtShort(s){ return s ? parseIso(s).toLocaleDateString('fr-FR', {day:'numeric', month:'short'}) : ''; }
-    function fmtLong(s){ return s ? parseIso(s).toLocaleDateString('fr-FR', {day:'numeric', month:'long'}) : ''; }
-    function ago(s){
-      var n = daysSince(s);
-      return n <= 0 ? 'aujourd\'hui' : n === 1 ? 'hier' : 'il y a ' + n + ' j';
-    }
-    var finePointer = !!(window.matchMedia && window.matchMedia('(pointer: fine)').matches);
-
-    /* ---------- LES DEUX MODES ---------- */
-    var MODES = {
-      alt: {
-        eyebrow: 'Carnet de recherche · Master 2',
-        title: 'd\'alternance',
-        lede: 'Événementiel, palaces et 5 étoiles. Choisis tes mots-clés, une ville, tes plateformes. L\'outil fabrique les recherches à ta place (après il faut quand même l\'adapter).',
-        doc: 'Chasseur d\'alternance — événementiel & hôtellerie de luxe',
-        tags: [['Événementiel',1],['Alternance',1],['Apprentissage',0],['Hôtel 5 étoiles',0],['Palace',0],
-               ['Luxe',0],['Hôtellerie',0],['Apprenti',0]],
-        presets: [
-          {label:'Événementiel', tags:['Événementiel','Alternance']},
-          {label:'Palaces', tags:['Palace','Alternance']},
-          {label:'Hôtellerie de luxe', tags:['Hôtellerie','Luxe','Alternance']},
-          {label:'Apprentissage 5 étoiles', tags:['Hôtel 5 étoiles','Apprentissage']}
-        ]
-      },
-      job: {
-        eyebrow: 'Carnet de recherche · Emploi',
-        title: 'de job',
-        lede: 'Événementiel, agences, lieux, palaces et 5 étoiles. CDI, CDD ou missions : choisis un métier, une ville, tes plateformes. L\'outil fabrique les recherches à ta place (après il faut quand même l\'adapter).',
-        doc: 'Chasseur de job — événementiel & hôtellerie de luxe',
-        tags: [['Événementiel',1],['Chef de projet événementiel',0],['Event manager',0],['Coordinateur',0],
-               ['MICE',0],['Séminaires',0],['Banquets',0],['Wedding planner',0],['Agence',0],
-               ['Luxe',0],['Hôtel 5 étoiles',0],['Palace',0],['CDI',0],['CDD',0]],
-        presets: [
-          {label:'Chef de projet événementiel', tags:['Chef de projet événementiel']},
-          {label:'Event manager', tags:['Event manager']},
-          {label:'Séminaires & banquets', tags:['Séminaires','Banquets']},
-          {label:'Événementiel de luxe', tags:['Événementiel','Luxe']},
-          {label:'Agences', tags:['Événementiel','Agence']},
-          {label:'MICE', tags:['MICE']}
-        ]
-      }
-    };
-
-    var CITIES = ['Paris','Rennes','Nice','Antibes','Cannes','Lyon','Marseille','Bordeaux','Lille','Strasbourg',
-      'Toulouse','Courchevel','Monaco','Megève','Val d\'Isère','Méribel','Chamonix','Tignes','Annecy','Évian-les-Bains',
-      'Saint-Tropez','Ramatuelle','Èze','Saint-Jean-Cap-Ferrat','Beaulieu-sur-Mer','Menton','Saint-Paul-de-Vence','Vence',
-      'Aix-en-Provence','Avignon','Gordes','Saint-Rémy-de-Provence','Biarritz','Saint-Jean-de-Luz','Arcachon',
-      'La Baule','Dinard','Saint-Malo','Deauville','Honfleur','Cabourg','Le Touquet','Versailles','Chantilly',
-      'Fontainebleau','Reims','Épernay','Beaune','Dijon','Colmar','Nantes','Montpellier','Grenoble','Toulon','Ajaccio',
-      'Porto-Vecchio','Calvi','Bonifacio','Mougins','Grasse','Saint-Émilion','Boulogne-Billancourt','Neuilly-sur-Seine',
-      'Levallois-Perret','Sophia Antipolis'];
-
-    // régions « de proximité » pour faire remonter les employeurs du coin
-    var AREAS = {
-      'Côte d\'Azur': ['Nice','Antibes','Cannes','Monaco','Èze','Saint-Jean-Cap-Ferrat','Beaulieu-sur-Mer','Menton',
-        'Saint-Paul-de-Vence','Vence','Mougins','Grasse','Sophia Antipolis','Saint-Tropez','Ramatuelle'],
-      'Île-de-France': ['Paris','Versailles','Chantilly','Fontainebleau','Boulogne-Billancourt','Neuilly-sur-Seine','Levallois-Perret'],
-      'Alpes': ['Courchevel','Megève','Val d\'Isère','Méribel','Chamonix','Tignes','Annecy','Évian-les-Bains','Grenoble','Lyon'],
-      'Provence': ['Aix-en-Provence','Avignon','Gordes','Saint-Rémy-de-Provence','Marseille','Toulon']
-    };
-    var AREA_OF = {};
-    Object.keys(AREAS).forEach(function(a){ AREAS[a].forEach(function(c){ AREA_OF[fold(c)] = a; }); });
-
-    var LBA_CITIES = {'paris':1,'lyon':1,'marseille':1,'bordeaux':1,'toulouse':1,'strasbourg':1,'nantes':1,
-      'rennes':1,'montpellier':1,'grenoble':1,'nice':1,'lille':1,'dijon':1,'reims':1,'toulon':1,'annecy':1,'avignon':1};
-    var LBA = 'https://labonnealternance.apprentissage.beta.gouv.fr';
-
-    function google(q, recent){ return 'https://www.google.com/search?q='+enc(q)+(recent ? '&tbs=qdr:w' : ''); }
-
-    /* kind : pre = mots-clés + ville dans le lien · part = mots-clés seulement · filter = tout se règle sur place
-       recent : le site accepte le filtre « moins de 7 jours » par lien
-       def:false : décochée par défaut */
-    var PLATFORMS = [
-      {id:'lba', modes:['alt'], name:'La Bonne Alternance', kind:'filter',
-       desc:'Service public. Offres + entreprises qui recrutent des alternants sans annonce publiée.',
-       note:'Tape ton métier dans le champ « Métier ou formation ».',
-       url:function(s){
-         var c = s.city && slug(s.city);
-         return (c && LBA_CITIES[c]) ? LBA+'/alternance/ville/'+c : LBA+'/recherche';
-       }},
-      {id:'indeed', modes:['alt','job'], name:'Indeed', kind:'pre', recent:true,
-       desc:{alt:'Le plus gros volume d\'offres en alternance et apprentissage.',
-             job:'Le plus gros volume d\'offres. Ajoute « CDI » ou « CDD » aux mots-clés pour cibler le contrat.'},
-       url:function(s){ return 'https://fr.indeed.com/jobs?q='+enc(s.q)+'&l='+enc(s.city || 'France')+(s.recent ? '&fromage=7&sort=date' : ''); }},
-      {id:'hellowork', modes:['alt','job'], name:'HelloWork', kind:'pre',
-       desc:{alt:'Très fourni sur l\'alternance en France. Alimente aussi La Bonne Alternance.',
-             job:'Très fourni en CDI et CDD partout en France. Le filtre contrat se règle sur la page.'},
-       url:function(s){
-         var u = 'https://www.hellowork.com/fr-fr/emploi/recherche.html?k='+enc(s.q);
-         if (s.city) u += '&l='+enc(s.city);   // sans ville : paramètre omis, pas vidé
-         return u + '&d=all';
-       }},
-      {id:'linkedin', modes:['alt','job'], name:'LinkedIn', kind:'pre', recent:true,
-       desc:{alt:'Là où les groupes hôteliers publient et où on contacte les RH.',
-             job:'Groupes hôteliers, agences et lieux publient ici. Et c\'est là qu\'on écrit aux RH.'},
-       url:function(s){
-         var loc = !s.city ? 'France' : (s.city === 'Monaco' ? 'Monaco' : s.city+', France');
-         return 'https://www.linkedin.com/jobs/search/?keywords='+enc(s.q)+'&location='+enc(loc)+(s.recent ? '&f_TPR=r604800&sortBy=DD' : '');
-       }},
-      {id:'francetravail', modes:['job'], name:'France Travail', kind:'part',
-       desc:'Service public de l\'emploi, avec en plus les offres des sites partenaires.',
-       note:'Mots-clés déjà saisis. Ajoute la ville dans « Lieu de travail ».',
-       url:function(s){ return 'https://candidat.francetravail.fr/offres/recherche?motsCles='+enc(s.q)+'&offresPartenaires=true&tri=0'; }},
-      {id:'apec', modes:['job'], name:'Apec', kind:'part',
-       desc:'Les postes cadres : chef de projet, responsable événementiel, event manager.',
-       note:'Règle le lieu sur place. Si les mots-clés ne sont pas repris, colle-les.',
-       url:function(s){ return 'https://www.apec.fr/candidat/recherche-emploi.html/emploi?motsCles='+enc(s.q); }},
-      {id:'wttj', modes:['alt','job'], name:'Welcome to the Jungle', kind:'filter',
-       desc:{alt:'Filtre contrat « Alternance ». Beaucoup d\'événementiel et d\'agences.',
-             job:'Agences événementielles, lieux et marques. Filtre contrat CDI, CDD ou freelance.'},
-       note:{alt:'Colle les mots-clés dans « Quel job recherchez-vous ? », puis filtre Contrat → Alternance.',
-             job:'Colle les mots-clés dans « Quel job recherchez-vous ? », puis filtre Contrat → CDI ou CDD.'},
-       url:function(){ return 'https://www.welcometothejungle.com/fr/jobs'; }},
-      {id:'jdp', modes:['alt','job'], name:'Journal des Palaces', kind:'filter',
-       desc:{alt:'La référence du luxe hôtelier. Filtre contrat « Alternance / Apprentissage ».',
-             job:'La référence du luxe hôtelier. Events, séminaires et banquets des palaces.'},
-       note:{alt:'Un seul métier accepté (ex. « Événementiel »). Puis Contrat → Alternance · Formation → Bac+5.',
-             job:'Un seul métier accepté (ex. « Événementiel »). Puis Contrat → CDI ou CDD.'},
-       url:function(){ return 'https://www.journaldespalaces.com/carriere/rechercher-des-offres-hotels.html'; }},
-      {id:'wizbii', modes:['job'], name:'Wizbii', kind:'filter',
-       desc:'Jeunes diplômés. Rubrique événementiel avec CDI, CDD et freelance.',
-       note:'La rubrique événementiel s\'ouvre directement : parcours la liste.',
-       url:function(){ return 'https://www.wizbii.com/emploi/evenementiel'; }},
-      {id:'lhr', modes:['job'], name:'L\'Hôtellerie Restauration', kind:'filter', def:false,
-       desc:'Le journal du métier. Rubrique séminaires & banquets des hôtels et traiteurs.',
-       note:'Peu d\'offres mais très ciblées. Filtre par région sur la page.',
-       url:function(){ return 'https://www.lhotellerie-restauration.fr/emplois/seminaire-banquet'; }},
-      {id:'1j1s', modes:['alt'], name:'1jeune1solution', kind:'filter',
-       desc:'Portail gouvernemental. Agrège France Travail et partenaires, filtre apprentissage actif.',
-       note:'Ajoute ton métier et ta ville dans les filtres de la page.',
-       url:function(){ return 'https://www.1jeune1solution.gouv.fr/emplois?naturesContrats=E2'; }},
-      {id:'letudiant', modes:['alt'], name:'L\'Étudiant — jobboard', kind:'filter',
-       desc:'11 000+ offres en apprentissage et contrat pro, du BTS au Bac+5.',
-       note:'Filtre par ville et niveau d\'études sur la page.',
-       url:function(){ return 'https://jobs-stages.letudiant.fr/offres/contrat-alternance'; }},
-      {id:'googleor', modes:['alt','job'], name:'Google — recherche « OU »', kind:'pre', recent:true,
-       desc:'Croise luxe OR palace OR « haut de gamme » OR premium. Attrape les sites carrière des hôtels.',
-       url:function(s){ return google(s.q+' '+(s.city || 'France')+' (luxe OR palace OR "haut de gamme" OR premium)', s.recent); }},
-      {id:'googlecareers', modes:['alt','job'], name:'Google — pages carrière', kind:'pre', recent:true,
-       desc:'Remonte les pages « Nous rejoindre » des hôtels, agences et lieux, souvent absentes des job boards.',
-       url:function(s){ return google(s.q+' '+(s.city || 'France')+' ("nous rejoindre" OR carrières OR recrutement OR careers)', s.recent); }}
-    ];
-    var KIND_LABEL = {pre:'Préremplie', part:'Mots-clés', filter:'À filtrer'};
-    function platformsFor(mode){ return PLATFORMS.filter(function(p){ return p.modes.indexOf(mode) !== -1; }); }
-
-    /* ---------- EMPLOYEURS À VISER EN DIRECT ---------- */
-    var JDP = 'https://www.journaldespalaces.com/carriere/offres-groupe-';
-    var WTTJ = 'https://www.welcometothejungle.com/fr/companies/';
-    var TYPES = {hotel:'Palaces & hôtels', agency:'Agences & salons', venue:'Lieux & traiteurs'};
-    var TARGETS = [
-      {name:'Oetker Collection', type:'hotel', desc:'Le Bristol, Hôtel du Cap-Eden-Roc, Château Saint-Martin, L\'Apogée Courchevel.',
-       where:['Paris','Antibes','Vence','Courchevel'], url:JDP+'439-Oetker-Collection.html', src:'Journal des Palaces'},
-      {name:'Dorchester Collection', type:'hotel', desc:'Plaza Athénée et Le Meurice.',
-       where:['Paris'], url:JDP+'415-Dorchester-Collection.html', src:'Journal des Palaces'},
-      {name:'Four Seasons', type:'hotel', desc:'George V, Grand-Hôtel du Cap-Ferrat, Megève.',
-       where:['Paris','Saint-Jean-Cap-Ferrat','Megève'], url:JDP+'26-Four-Seasons-Hotels-Resorts.html', src:'Journal des Palaces'},
-      {name:'Cheval Blanc', type:'hotel', desc:'Les maisons LVMH de Paris, Courchevel et Saint-Tropez.',
-       where:['Paris','Courchevel','Saint-Tropez'], url:JDP+'887-Cheval-Blanc.html', src:'Journal des Palaces'},
-      {name:'Airelles Collection', type:'hotel', desc:'Courchevel, Val d\'Isère, Saint-Tropez, Gordes, Le Grand Contrôle à Versailles.',
-       where:['Courchevel','Val d\'Isère','Saint-Tropez','Gordes','Versailles'], url:JDP+'1110-Airelles-Collection.html', src:'Journal des Palaces'},
-      {name:'Monte-Carlo Société des Bains de Mer', type:'hotel', desc:'Hôtel de Paris, Hermitage, Sporting : l\'hôtellerie et les soirées de Monaco.',
-       where:['Monaco'], url:JDP+'128-Monte-Carlo-Societe-des-Bains-de-Mer.html', src:'Journal des Palaces'},
-      {name:'Mandarin Oriental', type:'hotel', desc:'Mandarin Oriental Paris, rue Saint-Honoré.',
-       where:['Paris'], url:JDP+'46-Mandarin-Oriental-Hotel-Group.html', src:'Journal des Palaces'},
-      {name:'The Peninsula', type:'hotel', desc:'The Peninsula Paris, avenue Kléber.',
-       where:['Paris'], url:JDP+'55-The-Peninsula-Group.html', src:'Journal des Palaces'},
-      {name:'Rosewood', type:'hotel', desc:'Hôtel de Crillon, place de la Concorde.',
-       where:['Paris'], url:JDP+'63-Rosewood-Hotels-and-Resorts.html', src:'Journal des Palaces'},
-      {name:'Maisons Pariente', type:'hotel', desc:'Le Grand Mazarin, Lou Pinet, Le Coucou, Crillon le Brave.',
-       where:['Paris','Saint-Tropez','Méribel'], url:JDP+'1152-Maisons-Pariente.html', src:'Journal des Palaces'},
-      {name:'Evok Collection', type:'hotel', desc:'Brach, Nolinski, Sinner, Cour des Vosges.',
-       where:['Paris'], url:JDP+'956-Evok-Collection.html', src:'Journal des Palaces'},
-      {name:'Accor', type:'hotel', desc:'Raffles, Sofitel, Fairmont… dont Le Royal Monceau et le Fairmont Monte Carlo.',
-       where:['Paris','Monaco'], national:true, url:JDP+'108-Accor.html', src:'Journal des Palaces'},
-      {name:'Relais & Châteaux', type:'hotel', desc:'Hôtels et tables d\'exception, partout en France.',
-       where:[], national:true, url:JDP+'58-Relais-et-Chateaux.html', src:'Journal des Palaces'},
-      {name:'Hopscotch', type:'agency', desc:'Groupe d\'événementiel et de communication, avec un pôle Hopscotch Luxe.',
-       where:['Paris'], url:WTTJ+'hopscotch/jobs', src:'Welcome to the Jungle'},
-      {name:'Auditoire', type:'agency', desc:'Agence d\'événements et d\'expériences de marque.',
-       where:['Paris'], url:WTTJ+'auditoire/jobs', src:'Welcome to the Jungle'},
-      {name:'Comexposium', type:'agency', desc:'Organisateur de salons : SIAL, Foire de Paris…',
-       where:['Paris'], url:WTTJ+'comexposium/jobs', src:'Welcome to the Jungle'},
-      {name:'GL events', type:'agency', desc:'Organisation d\'événements, prestations techniques et gestion de lieux.',
-       where:['Lyon','Paris'], national:true, url:'https://www.gl-events.com/en/careers', src:'Site carrière'},
-      {name:'Potel et Chabot', type:'venue', desc:'Traiteur événementiel de prestige, avec SaintClair et Dalloyau.',
-       where:['Paris'], url:'https://groupepoteletchabot.com/rejoindre-le-groupe-potel-et-chabot', src:'Site carrière'},
-      {name:'Palais des Festivals', type:'venue', desc:'Congrès, festivals et salons de Cannes.',
-       where:['Cannes'], url:'https://www.palaisdesfestivals.com/espace-carriere/offre-emploi/', src:'Site carrière'},
-      {name:'Grimaldi Forum', type:'venue', desc:'Centre de congrès et d\'expositions de Monaco. Stages et candidatures spontanées acceptés.',
-       where:['Monaco'], url:'https://www.grimaldiforum.com/fr/recrutement', src:'Site carrière'}
-    ];
-
-    /* ---------- ÉTAT DE LA RECHERCHE (mémorisé dans le navigateur) ---------- */
-    var KEY = 'chasseur.v2';
-    function defaultTags(mode){ return MODES[mode].tags.map(function(t){ return {label:t[0], on:!!t[1], custom:false}; }); }
-    function defaultChecked(mode){
-      var c = {};
-      platformsFor(mode).forEach(function(p){ c[p.id] = p.def !== false; });
-      return c;
-    }
-    function freshMode(mode){ return {tags:defaultTags(mode), checked:defaultChecked(mode), generated:false}; }
-    var S = {mode:'alt', city:null, chosen:false, recent:false, tfilter:'all',
-             m:{alt:freshMode('alt'), job:freshMode('job')}, seen:{}};
-
-    (function restore(){
-      var raw = null;
-      try { raw = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { raw = null; }
-      if (!raw || typeof raw !== 'object') return;
-      if (raw.mode === 'alt' || raw.mode === 'job') S.mode = raw.mode;
-      S.chosen = !!raw.chosen;
-      S.city = (S.chosen && typeof raw.city === 'string' && raw.city.trim()) ? raw.city.trim().slice(0,60) : null;
-      S.recent = !!raw.recent;
-      if (raw.tfilter === 'all' || TYPES[raw.tfilter]) S.tfilter = raw.tfilter;
-      ['alt','job'].forEach(function(m){
-        var r = raw.m && raw.m[m];
-        if (!r || typeof r !== 'object') return;
-        if (Array.isArray(r.tags)){
-          var t = r.tags.filter(function(x){ return x && typeof x.label === 'string' && x.label.trim(); })
-                        .map(function(x){ return {label:x.label.trim().slice(0,80), on:!!x.on, custom:!!x.custom}; });
-          if (t.length) S.m[m].tags = t;
-        }
-        if (r.checked && typeof r.checked === 'object'){
-          Object.keys(S.m[m].checked).forEach(function(id){
-            if (typeof r.checked[id] === 'boolean') S.m[m].checked[id] = r.checked[id];
-          });
-        }
-        S.m[m].generated = !!r.generated;
-      });
-      var d = today();
-      if (raw.seen && typeof raw.seen === 'object'){
-        Object.keys(raw.seen).forEach(function(h){ if (raw.seen[h] === d) S.seen[h] = d; });  // on oublie les jours passés
-      }
-    })();
-    function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
-    function cur(){ return S.m[S.mode]; }
-    function canonicalCity(v){
-      var hit = CITIES.filter(function(c){ return fold(c) === fold(v); })[0];
-      return hit || v;
-    }
-
-    function modeFromHash(){
-      var h = (location.hash || '').replace('#','').toLowerCase();
-      if (h === 'job' || h === 'emploi') return 'job';
-      if (h === 'alternance') return 'alt';
-      return null;
-    }
-    var hashMode = modeFromHash();
-    if (hashMode) S.mode = hashMode;
-
-    // lien de recherche partagé : ?k=mot|mot&v=Ville&r=1 (#job pour le mode job)
-    var sharedLoaded = false;
-    (function applyShared(){
-      var qs;
-      try { qs = new URLSearchParams(location.search); } catch (e) { return; }
-      var k = qs.get('k');
-      if (!k) return;
-      var labels = k.split('|').map(function(x){ return x.trim().slice(0,80); }).filter(Boolean).slice(0,8);
-      if (!labels.length) return;
-      var m = cur();
-      m.tags.forEach(function(t){ t.on = false; });
-      labels.forEach(function(l){
-        var f = m.tags.filter(function(t){ return fold(t.label) === fold(l); })[0];
-        if (f) f.on = true; else m.tags.push({label:l, on:true, custom:true});
-      });
-      var v = qs.get('v');
-      if (v !== null){
-        v = v.trim().slice(0,60);
-        S.chosen = true;
-        S.city = (!v || fold(v) === 'france') ? null : canonicalCity(v);
-      }
-      S.recent = qs.get('r') === '1';
-      m.generated = true;
-      save();
-      sharedLoaded = true;
-      try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
-    })();
-
-    /* ---------- ÉTAT DU SUIVI (stocké à part, jamais touché par « Réinitialiser ») ---------- */
-    var TKEY = 'chasseur.suivi.v1';
-    var STATUSES = [
-      {id:'todo', label:'À postuler'}, {id:'sent', label:'Envoyée'}, {id:'followup', label:'Relancée'},
-      {id:'interview', label:'Entretien'}, {id:'offer', label:'Proposition'}, {id:'refused', label:'Refus'}
-    ];
-    var STATUS_LABEL = {};
-    STATUSES.forEach(function(s){ STATUS_LABEL[s.id] = s.label; });
-    var TFILTERS = {all:'Toutes', due:'À relancer', open:'En cours', refused:'Refus'};
-    function str(v, n){ return typeof v === 'string' ? v.trim().slice(0, n) : ''; }
-    function isoOk(v){ return (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v)) ? v : ''; }
-    function safeUrl(u){
-      u = str(u, 500);
-      if (!u) return '';
-      if (/^https?:\/\/[^\s]+$/i.test(u)) return u;
-      if (/^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(u)) return 'https://' + u;
-      return '';   // tout le reste (javascript:, data:…) est ignoré
-    }
-    function newId(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
-    function cleanApp(x){
-      if (!x || typeof x !== 'object') return null;
-      var company = str(x.company, 80);
-      if (!company) return null;
-      return {
-        id: str(x.id, 40) || newId(), company: company, role: str(x.role, 80), city: str(x.city, 60),
-        url: safeUrl(x.url), status: STATUS_LABEL[x.status] ? x.status : 'todo',
-        date: isoOk(x.date), updated: isoOk(x.updated) || today(), created: isoOk(x.created) || today(),
-        note: str(x.note, 500), mode: x.mode === 'job' ? 'job' : 'alt'
-      };
-    }
-    var T = {apps:[], filter:'all'};
-    var storageOk = true;
-    try { localStorage.setItem('chasseur.test', '1'); localStorage.removeItem('chasseur.test'); } catch (e) { storageOk = false; }
-    (function restoreT(){
-      try {
-        var raw = JSON.parse(localStorage.getItem(TKEY) || 'null');
-        if (raw && Array.isArray(raw.apps)) T.apps = raw.apps.map(cleanApp).filter(Boolean);
-        if (raw && TFILTERS[raw.filter]) T.filter = raw.filter;
-      } catch (e) {}
-    })();
-    function saveT(){ try { localStorage.setItem(TKEY, JSON.stringify(T)); } catch (e) {} }
-
-    /* ---------- COPIE ---------- */
-    function copyText(txt){
-      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) return navigator.clipboard.writeText(txt);
-      return new Promise(function(resolve, reject){
-        var ta = document.createElement('textarea');
-        ta.value = txt; ta.setAttribute('readonly', ''); ta.style.position = 'absolute'; ta.style.left = '-9999px';
-        document.body.appendChild(ta); ta.select();
-        var ok = false;
-        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-        document.body.removeChild(ta);
-        ok ? resolve() : reject(new Error('copy'));
-      });
-    }
-    function makeCopy(label, value){
-      var b = btn('copy-btn', label);
-      b.addEventListener('click', function(){
-        var txt = typeof value === 'function' ? value() : value;
-        copyText(txt).then(function(){
-          b.classList.add('copied'); b.textContent = '✓ Copié';
-          setTimeout(function(){ b.classList.remove('copied'); b.textContent = label; }, 1400);
-        }).catch(function(){
-          b.textContent = 'Copie impossible';
-          setTimeout(function(){ b.textContent = label; }, 1800);
-        });
-      });
-      return b;
-    }
-
-    /* ---------- MESSAGES PRÊTS À COPIER ---------- */
-    // « au poste d'assistant », « au poste de chef de projet »
-    function posteDe(role){ return 'poste ' + (/^[aeiouyhàâäéèêëîïôöùûüœ]/i.test(role) ? 'd\'' : 'de ') + role; }
-    function msgCandidature(company, role, mode){
-      var objet = role ? 'ma candidature au ' + posteDe(role) : 'ma candidature spontanée';
-      var intro = mode === 'alt'
-        ? 'En Master 2, je recherche une alternance dans l\'événementiel et je me permets de vous adresser ' + objet + '.'
-        : 'Je recherche un poste dans l\'événementiel et je me permets de vous adresser ' + objet + '.';
-      return 'Bonjour,\n\n' + intro + ' ' + (company || 'Votre maison') + ' incarne l\'exigence et le sens du détail que je souhaite mettre au service de vos événements.\n\n'
-        + 'Je reste à votre disposition pour vous présenter mon parcours lors d\'un échange. Vous trouverez mon CV en pièce jointe.\n\nBien cordialement,';
-    }
-    function msgRelance(a){
-      var when = a.date ? ' le ' + fmtLong(a.date) : '';
-      var alt = a.mode === 'alt' ? ' en alternance' : '';
-      var objet = a.role ? 'ma candidature' + alt + ' au ' + posteDe(a.role) + ', envoyée' + when
-                         : 'la candidature spontanée' + alt + ' que je vous ai adressée' + when;
-      var envie = a.role ? 'Ce poste m\'intéresse toujours vivement' : 'Rejoindre ' + a.company + ' me tient toujours à cœur';
-      return 'Bonjour,\n\nJe me permets de revenir vers vous au sujet de ' + objet + '. ' + envie
-        + ' et je reste disponible pour un échange à votre convenance.\n\nJe vous remercie par avance pour votre retour.\n\nBien cordialement,';
-    }
-    function msgMerci(a){
-      return 'Bonjour,\n\nJe vous remercie pour notre échange' + (a.role ? ' au sujet du ' + posteDe(a.role) : '')
-        + '. Il a renforcé mon envie de rejoindre ' + a.company + ', et je reste à votre disposition pour toute information complémentaire.\n\nBien cordialement,';
-    }
-
-    /* ---------- MOTS-CLÉS ---------- */
-    var tagsEl = $('tags'), warn = $('warn'), presetsEl = $('presets');
-    function activeTags(){ return cur().tags.filter(function(t){ return t.on; }); }
-    function checkWarn(){
-      var n = activeTags().length;
-      if (n >= 4){
-        warn.textContent = n + ' mots-clés actifs. Les sites cherchent TOUS les mots à la fois : au-delà de 3, tu risques zéro résultat.';
-        warn.hidden = false;
-      } else { warn.hidden = true; }
-    }
-    function syncPresets(){
-      var on = activeTags().map(function(t){ return fold(t.label); }).sort().join('|');
-      Array.prototype.forEach.call(presetsEl.querySelectorAll('.preset'), function(b, i){
-        var p = MODES[S.mode].presets[i];
-        b.setAttribute('aria-pressed', on === p.tags.map(fold).sort().join('|') ? 'true' : 'false');
-      });
-    }
-    function renderPresets(){
-      presetsEl.innerHTML = '';
-      presetsEl.appendChild(el('span', 'presets-label', 'Raccourcis'));
-      MODES[S.mode].presets.forEach(function(p){
-        var b = btn('preset', p.label);
-        b.addEventListener('click', function(){ applyPreset(p); });
-        presetsEl.appendChild(b);
-      });
-      syncPresets();
-    }
-    function applyPreset(p){
-      var want = p.tags.map(fold);
-      cur().tags.forEach(function(t){ t.on = want.indexOf(fold(t.label)) !== -1; });
-      p.tags.forEach(function(lbl){
-        if (!cur().tags.some(function(t){ return fold(t.label) === fold(lbl); })) cur().tags.push({label:lbl, on:true, custom:true});
-      });
-      renderTags(); changed();
-    }
-    function renderTags(){
-      tagsEl.innerHTML = '';
-      cur().tags.forEach(function(t, i){
-        var b = btn('tag', t.label);
-        b.setAttribute('aria-pressed', t.on ? 'true' : 'false');
-        var group = null;
-        b.addEventListener('click', function(){
-          t.on = !t.on;
-          b.setAttribute('aria-pressed', t.on ? 'true' : 'false');
-          if (group) group.classList.toggle('on', t.on);
-          changed();
-        });
-        if (t.custom){
-          group = el('span', 'tag-group' + (t.on ? ' on' : ''));
-          var k = btn('kill', '×');
-          k.setAttribute('aria-label', 'Supprimer « ' + t.label + ' »'); k.title = 'Supprimer';
-          k.addEventListener('click', function(){
-            cur().tags.splice(i, 1);
-            renderTags(); changed();
-            $('newTag').focus();
-          });
-          group.appendChild(b); group.appendChild(k);
-          tagsEl.appendChild(group);
-        } else {
-          tagsEl.appendChild(b);
-        }
-      });
-    }
-    function addTag(){
-      var input = $('newTag');
-      // plusieurs mots-clés d'un coup, séparés par des virgules
-      input.value.split(',').forEach(function(raw){
-        var v = raw.trim().slice(0,80);
-        if (!v) return;
-        var found = cur().tags.filter(function(t){ return fold(t.label) === fold(v); })[0];
-        if (found) found.on = true;
-        else cur().tags.push({label:v, on:true, custom:true});
-      });
-      input.value = '';
-      renderTags(); changed();
-    }
-    $('addTag').addEventListener('click', addTag);
-    $('newTag').addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); addTag(); } });
-
-    /* ---------- VILLE ---------- */
-    var ddBtn = $('ddBtn'), ddPanel = $('ddPanel'), ddList = $('ddList'), ddFilter = $('ddFilter'), ddLabel = $('ddLabel');
-    function updateCityLabel(){
-      ddLabel.textContent = S.chosen ? (S.city || 'Toute la France') : 'Choisir une ville';
-      if (S.chosen) ddBtn.setAttribute('data-chosen', '1'); else ddBtn.removeAttribute('data-chosen');
-    }
-    function setCity(c){
-      S.city = c; S.chosen = true;
-      updateCityLabel(); closeDD(true); changed();
-      renderTargets();
-    }
-    function cityOpt(label, selected, onPick, extraCls){
-      var o = btn('dd-opt' + (extraCls ? ' ' + extraCls : ''), label);
-      o.setAttribute('role', 'option');
-      o.setAttribute('aria-selected', selected ? 'true' : 'false');
-      o.addEventListener('click', onPick);
-      ddList.appendChild(o);
-      return o;
-    }
-    function renderCities(q){
-      var raw = (q || '').trim(), fq = fold(raw);
-      ddList.innerHTML = '';
-      // option nationale, toujours en tête, insensible au filtre
-      cityOpt('Toute la France', S.chosen && S.city === null, function(){ setCity(null); }, 'dd-all');
-      // filtre sans accents : « eze » trouve « Èze », « evian » trouve « Évian-les-Bains »
-      var hits = CITIES.filter(function(c){ return fold(c).indexOf(fq) !== -1; });
-      if (fq) hits.sort(function(a, b){ return (fold(a).indexOf(fq) === 0 ? 0 : 1) - (fold(b).indexOf(fq) === 0 ? 0 : 1); });
-      hits.forEach(function(c){ cityOpt(c, S.city === c, function(){ setCity(c); }); });
-      var exact = hits.some(function(c){ return fold(c) === fq; });
-      if (raw && !exact){
-        var v = raw.slice(0,60);
-        cityOpt('Chercher à « ' + v + ' »', S.city === v, function(){ setCity(v); }, 'dd-custom');
-      }
-    }
-    function openDD(){
-      ddPanel.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true');
-      ddFilter.value = ''; renderCities('');
-      if (finePointer) ddFilter.focus();   // sur téléphone : pas de clavier qui cache la liste
-    }
-    function closeDD(focusBtn){
-      if (!ddPanel.classList.contains('open')) return;
-      ddPanel.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false');
-      if (focusBtn) ddBtn.focus();
-    }
-    ddBtn.addEventListener('click', function(e){ e.stopPropagation(); ddPanel.classList.contains('open') ? closeDD(false) : openDD(); });
-    ddPanel.addEventListener('click', function(e){ e.stopPropagation(); });
-    ddFilter.addEventListener('input', function(){ renderCities(ddFilter.value); });
-    ddFilter.addEventListener('keydown', function(e){
-      var opts = ddList.querySelectorAll('.dd-opt');
-      var hasQuery = !!ddFilter.value.trim();
-      if (e.key === 'ArrowDown'){
-        e.preventDefault();
-        if (opts.length) opts[hasQuery && opts.length > 1 ? 1 : 0].focus();
-      } else if (e.key === 'Enter'){
-        e.preventDefault();
-        if (hasQuery && opts.length > 1) opts[1].click();   // premier résultat (ou la ville tapée)
-      }
-    });
-    ddList.addEventListener('keydown', function(e){
-      var opts = Array.prototype.slice.call(ddList.querySelectorAll('.dd-opt'));
-      var i = opts.indexOf(document.activeElement);
-      if (i === -1) return;
-      if (e.key === 'ArrowDown'){ e.preventDefault(); (opts[i+1] || opts[i]).focus(); }
-      else if (e.key === 'ArrowUp'){ e.preventDefault(); if (i === 0) ddFilter.focus(); else opts[i-1].focus(); }
-    });
-    document.addEventListener('click', function(){ closeDD(false); });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDD(true); });
-
-    /* ---------- PLATEFORMES ---------- */
-    var grid = $('platforms');
-    function renderPlatforms(){
-      grid.innerHTML = '';
-      platformsFor(S.mode).forEach(function(p){
-        var c = btn('card');
-        c.setAttribute('aria-pressed', cur().checked[p.id] ? 'true' : 'false');
-        var box = el('span', 'box'); box.setAttribute('aria-hidden', 'true');
-        var body = el('span');
-        body.appendChild(el('b', null, p.name));
-        body.appendChild(el('span', 'desc', pick(p.desc, S.mode)));
-        var badges = el('span', 'badges');
-        badges.appendChild(el('span', 'badge ' + p.kind, KIND_LABEL[p.kind]));
-        if (S.recent && p.recent) badges.appendChild(el('span', 'badge fresh', '7 jours'));
-        body.appendChild(badges);
-        c.appendChild(box); c.appendChild(body);
-        c.addEventListener('click', function(){
-          cur().checked[p.id] = !cur().checked[p.id];
-          c.setAttribute('aria-pressed', cur().checked[p.id] ? 'true' : 'false');
-          changed();
-        });
-        grid.appendChild(c);
-      });
-    }
-    function setAll(v){
-      platformsFor(S.mode).forEach(function(p){ cur().checked[p.id] = v; });
-      renderPlatforms(); changed();
-    }
-    $('allOn').addEventListener('click', function(){ setAll(true); });
-    $('allOff').addEventListener('click', function(){ setAll(false); });
-
-    var recentBtn = $('recent');
-    function updateRecent(){ recentBtn.setAttribute('aria-pressed', S.recent ? 'true' : 'false'); }
-    recentBtn.addEventListener('click', function(){
-      S.recent = !S.recent; updateRecent(); renderPlatforms(); changed();
-    });
-
-    /* ---------- GÉNÉRATION ---------- */
-    var err = $('err'), results = $('results'), counterEl = null, staleEl = null, current = [], lastSearch = null;
-    function fail(msg){ err.textContent = msg; err.hidden = false; clearResults(); }
-    function clearResults(){ results.innerHTML = ''; counterEl = null; staleEl = null; current = []; lastSearch = null; }
-
-    // à chaque réglage modifié : on mémorise, et on signale que la liste affichée n'est plus à jour
-    function changed(){
-      checkWarn(); syncPresets(); save();
-      if (staleEl) staleEl.hidden = false;
-    }
-
-    function isSeen(href){ return S.seen[href] === today(); }
-    function updateCounter(){
-      if (!counterEl) return;
-      var n = current.filter(function(x){ return isSeen(x.href); }).length;
-      counterEl.innerHTML = '';
-      counterEl.appendChild(el('b', null, String(n)));
-      counterEl.appendChild(document.createTextNode(' / ' + current.length + ' ouverts aujourd\'hui'));
-    }
-    function remember(href){ if (!isSeen(href)){ S.seen[href] = today(); save(); } }
-    function markSeen(a, href){ remember(href); a.classList.add('seen'); updateCounter(); }
-    function onOpen(node, href, fn){
-      // clic, molette, tap, ou ouverture clavier : tout marque comme ouvert
-      node.addEventListener('click', fn);
-      node.addEventListener('auxclick', function(e){ if (e.button === 1) fn(); });
-      node.addEventListener('contextmenu', fn);
-    }
-    function shareUrl(s){
-      var u = location.origin + location.pathname + '?k=' + enc(s.kw.join('|')) + '&v=' + enc(s.city || 'France') + (s.recent ? '&r=1' : '');
-      return u + (s.mode === 'job' ? '#job' : '');
-    }
-
-    function generate(silent){
-      err.hidden = true;
-      var kw = activeTags().map(function(t){ return t.label; });
-      var picked = platformsFor(S.mode).filter(function(p){ return cur().checked[p.id]; });
-      var msg = !kw.length ? 'Aucun mot-clé actif. Active au moins un mot-clé pour définir la recherche.'
-              : !S.chosen ? 'Aucun périmètre choisi. Ouvre « Choisir une ville » et prends une ville, ou « Toute la France ».'
-              : !picked.length ? 'Aucune plateforme cochée. Coche au moins une carte.' : '';
-      if (msg){
-        if (silent){ clearResults(); return; }
-        return fail(msg);
-      }
-
-      var s = {kw:kw, q:kw.join(' '), city:S.city, recent:S.recent, mode:S.mode};
-      cur().generated = true; save();
-      clearResults();
-      lastSearch = s;
-      current = picked.map(function(p){ return {p:p, href:p.url(s)}; });
-
-      staleEl = el('div', 'notice');
-      staleEl.appendChild(el('span', null, 'Réglages modifiés depuis la dernière génération.'));
-      var upd = btn('linkbtn', 'Mettre à jour');
-      upd.addEventListener('click', function(){ generate(false); });
-      staleEl.appendChild(upd);
-      staleEl.hidden = true;
-      results.appendChild(staleEl);
-
-      var recap = el('div', 'recap');
-      recap.appendChild(document.createTextNode(current.length + ' recherche' + (current.length > 1 ? 's' : '') + ' — '));
-      recap.appendChild(el('strong', null, s.q));
-      recap.appendChild(document.createTextNode(' · '));
-      recap.appendChild(el('strong', null, s.city || 'Toute la France'));
-      if (s.recent){ recap.appendChild(document.createTextNode(' · ')); recap.appendChild(el('strong', null, 'moins de 7 jours')); }
-      results.appendChild(recap);
-
-      var bar = el('div', 'res-bar');
-      counterEl = el('div', 'counter');
-      bar.appendChild(counterEl);
-      bar.appendChild(makeCopy('Copier tous les liens', function(){
-        return current.map(function(x){ return x.p.name + ' : ' + x.href; }).join('\n');
-      }));
-      bar.appendChild(makeCopy('Partager cette recherche', function(){ return shareUrl(s); }));
-      var unsee = btn('linkbtn', 'Tout repasser en non lu');
-      unsee.addEventListener('click', function(){
-        current.forEach(function(x){ delete S.seen[x.href]; });
-        save();
-        Array.prototype.forEach.call(results.querySelectorAll('.link.seen'), function(a){ a.classList.remove('seen'); });
-        updateCounter();
-      });
-      bar.appendChild(unsee);
-      results.appendChild(bar);
-
-      current.forEach(function(x){
-        var p = x.p, href = x.href;
-        var a = el('a', 'link' + (isSeen(href) ? ' seen' : ''));
-        a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer';
-
-        var left = el('span');
-        left.appendChild(el('b', null, p.name));
-        var note = pick(p.note, S.mode);
-        if (s.recent && p.recent) note = (note ? note + ' ' : '') + 'Offres des 7 derniers jours.';
-        if (note) left.appendChild(el('span', 'note', note));
-        left.appendChild(el('small', null, href));
-
-        var right = el('span', 'link-right');
-        right.appendChild(el('span', 'seen-tag', '✓ Ouvert'));
-        var ar = el('span', 'arrow', '↗'); ar.setAttribute('aria-hidden', 'true');
-        right.appendChild(ar);
-        a.appendChild(left); a.appendChild(right);
-        onOpen(a, href, function(){ markSeen(a, href); });
-
-        // les sites qui demandent une saisie manuelle : on met les valeurs à portée de doigt
-        if (p.kind !== 'pre'){
-          var wrapEl = el('div', 'with-copy');
-          var cb = el('div', 'copybar');
-          cb.appendChild(makeCopy('Copier les mots-clés', s.q));
-          if (s.city) cb.appendChild(makeCopy('Copier la ville', s.city));
-          wrapEl.appendChild(a); wrapEl.appendChild(cb);
-          results.appendChild(wrapEl);
-        } else {
-          results.appendChild(a);
-        }
-      });
-      updateCounter();
-      if (!silent) results.scrollIntoView({block:'start'});
-    }
-    $('generate').addEventListener('click', function(){ generate(false); });
-
-    // retour sur l'onglet (ou le lendemain) : on remet les états « ouvert » à jour
-    document.addEventListener('visibilitychange', function(){
-      if (document.hidden) return;
-      Array.prototype.forEach.call(document.querySelectorAll('a.link'), function(a){
-        a.classList.toggle('seen', isSeen(a.getAttribute('href')));
-      });
-      updateCounter();
-      renderTargets();
-      renderTracker();
-    });
-
-    $('reset').addEventListener('click', function(){
-      S.m[S.mode] = freshMode(S.mode);
-      S.city = null; S.chosen = false; S.recent = false; S.seen = {};
-      save();
-      err.hidden = true; clearResults();
-      updateCityLabel(); updateRecent(); renderCities('');
-      renderPresets(); renderTags(); renderPlatforms(); checkWarn(); renderTargets();
-    });
-
-    /* ---------- CHAPITRE IV : VISER DIRECT ---------- */
-    var targetsEl = $('targets'), tFiltersEl = $('tFilters');
-    function isTracked(name){ return T.apps.some(function(a){ return fold(a.company) === fold(name); }); }
-    function proximity(t){
-      if (!S.chosen || !S.city) return {rank:2};   // pas de ville : ordre éditorial
-      var fc = fold(S.city);
-      if (t.where.some(function(w){ return fold(w) === fc; })) return {rank:0, badge:'À ' + S.city};
-      var area = AREA_OF[fc];
-      if (area && t.where.some(function(w){ return AREA_OF[fold(w)] === area; })) return {rank:1, badge:area};
-      if (t.national) return {rank:1, badge:'Partout en France'};
-      return {rank:3};
-    }
-    function renderTargetFilters(){
-      tFiltersEl.innerHTML = '';
-      [['all','Tous']].concat(Object.keys(TYPES).map(function(k){ return [k, TYPES[k]]; })).forEach(function(f){
-        var n = f[0] === 'all' ? TARGETS.length : TARGETS.filter(function(t){ return t.type === f[0]; }).length;
-        var b = btn('chip', f[1]);
-        b.appendChild(el('span', 'n', String(n)));
-        b.setAttribute('aria-pressed', S.tfilter === f[0] ? 'true' : 'false');
-        b.addEventListener('click', function(){ S.tfilter = f[0]; save(); renderTargetFilters(); renderTargets(); });
-        tFiltersEl.appendChild(b);
-      });
-    }
-    $('tMore').addEventListener('click', function(){
-      var first = targetsEl.children.length;
-      targetsOpen = true; renderTargets();
-      var next = targetsEl.children[first];
-      if (next){ var l = next.querySelector('a'); if (l) l.focus({preventScroll:true}); }
-    });
-    function cityForTarget(t){
-      if (S.city && t.where.some(function(w){ return fold(w) === fold(S.city); })) return S.city;
-      return t.where.length === 1 ? t.where[0] : '';
-    }
-    var targetsOpen = false;
-    function renderTargets(){
-      targetsEl.innerHTML = '';
-      var moreEl = $('tMore');
-      var list = TARGETS.map(function(t, i){ return {t:t, i:i, p:proximity(t)}; })
-        .filter(function(x){ return S.tfilter === 'all' || x.t.type === S.tfilter; })
-        .sort(function(a, b){ return (a.p.rank - b.p.rank) || (a.i - b.i); });
-      // liste repliée : les plus proches d'abord, le reste sur demande
-      var limit = window.innerWidth < 600 ? 4 : 9;
-      var hiddenCount = targetsOpen ? 0 : Math.max(0, list.length - limit);
-      if (hiddenCount) list = list.slice(0, limit);
-      moreEl.hidden = !hiddenCount;
-      moreEl.textContent = 'Voir les ' + hiddenCount + ' autres';
-      list.forEach(function(x){
-          var t = x.t;
-          var card = el('article', 'target' + (x.p.rank === 0 ? ' near' : '') + (isSeen(t.url) ? ' seen' : ''));
-          var head = el('div', 't-head');
-          head.appendChild(el('b', null, t.name));
-          if (x.p.badge) head.appendChild(el('span', 'badge here', x.p.badge));
-          card.appendChild(head);
-          card.appendChild(el('span', 'desc', t.desc));
-          var where = t.where.length ? t.where.join(' · ') : 'Partout en France';
-          card.appendChild(el('span', 't-where', where + ' — via ' + t.src));
-
-          var act = el('div', 't-actions');
-          var a = el('a', 't-link', 'Voir les offres ↗');
-          a.href = t.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-          onOpen(a, t.url, function(){ remember(t.url); card.classList.add('seen'); });
-          act.appendChild(a);
-
-          var follow = btn('copy-btn' + (isTracked(t.name) ? ' done' : ''), isTracked(t.name) ? '✓ Suivie' : '+ Suivre');
-          follow.addEventListener('click', function(){
-            if (!isTracked(t.name)){
-              T.apps.push(cleanApp({company:t.name, city:cityForTarget(t), url:t.url, status:'todo', mode:S.mode}));
-              saveT(); renderTracker();
-              flash('« ' + t.name + ' » ajoutée au suivi, en « À postuler ».');
-            }
-            follow.className = 'copy-btn done'; follow.textContent = '✓ Suivie';
-          });
-          var btns = el('span', 't-btns');
-          btns.appendChild(follow);
-          btns.appendChild(makeCopy('Candidature', function(){ return msgCandidature(t.name, '', S.mode); }));
-          act.appendChild(btns);
-          card.appendChild(act);
-          targetsEl.appendChild(card);
-        });
-    }
-
-    /* ---------- CHAPITRE V : SUIVI DES CANDIDATURES ---------- */
-    var listEl = $('trkList'), form = $('trkForm'), noticeEl = $('trkNotice'), addBtn = $('trkAdd');
-    var fCompany = $('fCompany'), fRole = $('fRole'), fCity = $('fCity'), fStatus = $('fStatus'),
-        fDate = $('fDate'), fUrl = $('fUrl'), fNote = $('fNote'), fErr = $('fErr');
-    STATUSES.forEach(function(s){ var o = el('option', null, s.label); o.value = s.id; fStatus.appendChild(o); });
-    var editing = null, noticeTimer = null, lastDeleted = null;
-
-    function dueInfo(a){
-      if (a.status === 'sent' && daysSince(a.date || a.updated) >= 7) return 'À relancer';
-      if (a.status === 'followup' && daysSince(a.updated) >= 10) return 'Toujours sans réponse';
-      return '';
-    }
-    function isOpen(a){ return a.status !== 'refused'; }
-    function counts(){
-      var c = {all:T.apps.length, due:0, open:0, refused:0, interview:0, offer:0};
-      T.apps.forEach(function(a){
-        if (dueInfo(a)) c.due++;
-        if (isOpen(a)) c.open++; else c.refused++;
-        if (a.status === 'interview') c.interview++;
-        if (a.status === 'offer') c.offer++;
-      });
-      return c;
-    }
-    function flash(msg, actionLabel, action){
-      noticeEl.innerHTML = '';
-      noticeEl.appendChild(el('span', null, msg));
-      if (actionLabel){
-        var b = btn('linkbtn', actionLabel);
-        b.addEventListener('click', function(){ action(); noticeEl.hidden = true; });
-        noticeEl.appendChild(b);
-      }
-      noticeEl.hidden = false;
-      clearTimeout(noticeTimer);
-      noticeTimer = setTimeout(function(){ noticeEl.hidden = true; }, actionLabel ? 9000 : 5000);
-    }
-    function metaText(a){
-      if (a.status === 'todo') return 'Ajoutée le ' + fmtShort(a.created);
-      var sent = a.date ? 'Envoyée le ' + fmtShort(a.date) + ' (' + ago(a.date) + ')' : '';
-      if (a.status === 'sent') return sent || 'Envoyée';
-      if (a.status === 'followup') return (sent ? sent + ' · ' : '') + 'relancée le ' + fmtShort(a.updated);
-      return (sent ? sent + ' · ' : '') + STATUS_LABEL[a.status].toLowerCase() + ' le ' + fmtShort(a.updated);
-    }
-    function messageFor(a){
-      if (a.status === 'todo') return {label:'Copier la candidature', text:function(){ return msgCandidature(a.company, a.role, a.mode); }};
-      if (a.status === 'sent' || a.status === 'followup') return {label:'Copier la relance', text:function(){ return msgRelance(a); }};
-      if (a.status === 'interview') return {label:'Copier le remerciement', text:function(){ return msgMerci(a); }};
-      return null;
-    }
-    function setStatus(a, ns){
-      if (ns === a.status) return;
-      if (ns !== 'todo' && !a.date) a.date = today();
-      a.status = ns; a.updated = today();
-      saveT(); renderTracker();
-    }
-    function removeApp(a){
-      var i = T.apps.indexOf(a);
-      if (i < 0) return;
-      T.apps.splice(i, 1);
-      lastDeleted = {a:a, i:i};
-      saveT(); renderTracker(); renderTargets();
-      flash('« ' + a.company + ' » supprimée.', 'Annuler', function(){
-        if (!lastDeleted) return;
-        T.apps.splice(Math.min(lastDeleted.i, T.apps.length), 0, lastDeleted.a);
-        lastDeleted = null;
-        saveT(); renderTracker(); renderTargets();
-      });
-    }
-    function renderTrackerFilters(c){
-      var fEl = $('trkFilters');
-      fEl.innerHTML = '';
-      Object.keys(TFILTERS).forEach(function(k){
-        var b = btn('chip', TFILTERS[k]);
-        b.appendChild(el('span', 'n', String(c[k])));
-        b.setAttribute('aria-pressed', T.filter === k ? 'true' : 'false');
-        b.addEventListener('click', function(){ T.filter = k; saveT(); renderTracker(); });
-        fEl.appendChild(b);
-      });
-      fEl.hidden = !T.apps.length;
-    }
-    function renderSummary(c){
-      var sum = $('trkSummary');
-      sum.innerHTML = '';
-      if (!c.all){ sum.hidden = true; return; }
-      sum.hidden = false;
-      var parts = [[c.all, c.all > 1 ? 'candidatures' : 'candidature']];
-      if (c.due) parts.push([c.due, 'à relancer']);
-      if (c.interview) parts.push([c.interview, c.interview > 1 ? 'entretiens' : 'entretien']);
-      if (c.offer) parts.push([c.offer, c.offer > 1 ? 'propositions' : 'proposition']);
-      parts.forEach(function(p, i){
-        if (i) sum.appendChild(document.createTextNode(' · '));
-        sum.appendChild(el('b', null, String(p[0])));
-        sum.appendChild(document.createTextNode(' ' + p[1]));
-      });
-    }
-    function renderTracker(){
-      var c = counts();
-      renderSummary(c);
-      renderTrackerFilters(c);
-      var due = $('tocDue');
-      due.textContent = c.due; due.hidden = !c.due;
-      due.title = c.due + ' à relancer';
-
-      listEl.innerHTML = '';
-      if (!T.apps.length){
-        listEl.appendChild(el('div', 'trk-empty', 'Aucune candidature pour l\'instant. Ajoute la première, ou clique « Suivre » sur un employeur du chapitre IV.'));
-        return;
-      }
-      var rows = T.apps.filter(function(a){
-        return T.filter === 'all' || (T.filter === 'due' && dueInfo(a)) || (T.filter === 'open' && isOpen(a)) || (T.filter === 'refused' && !isOpen(a));
-      }).sort(function(a, b){
-        var ra = dueInfo(a) ? 0 : isOpen(a) ? 1 : 2, rb = dueInfo(b) ? 0 : isOpen(b) ? 1 : 2;
-        return (ra - rb) || (a.updated < b.updated ? 1 : a.updated > b.updated ? -1 : 0);
-      });
-      if (!rows.length){
-        listEl.appendChild(el('div', 'trk-empty', 'Rien dans ce filtre.'));
-        return;
-      }
-      rows.forEach(function(a){
-        var due = dueInfo(a);
-        var good = a.status === 'interview' || a.status === 'offer';
-        var card = el('article', 'app' + (due ? ' due' : good ? ' good' : '') + (isOpen(a) ? '' : ' closed'));
-        var head = el('div', 'app-head');
-        var title = el('div', 'app-title');
-        title.appendChild(el('b', null, a.company));
-        if (a.role){ title.appendChild(document.createTextNode(' · ')); title.appendChild(el('span', 'role', a.role)); }
-        var meta = el('div', 'app-meta');
-        if (a.city) meta.appendChild(el('span', null, a.city));
-        meta.appendChild(el('span', null, metaText(a)));
-        meta.appendChild(el('span', null, a.mode === 'job' ? 'Job' : 'Alternance'));
-        if (due) meta.appendChild(el('span', 'badge due', due));
-        title.appendChild(meta);
-        head.appendChild(title);
-
-        var sel = el('select', 'status');
-        sel.setAttribute('aria-label', 'Statut de la candidature ' + a.company);
-        STATUSES.forEach(function(s){ var o = el('option', null, s.label); o.value = s.id; sel.appendChild(o); });
-        sel.value = a.status; sel.setAttribute('data-s', a.status);
-        sel.addEventListener('change', function(){ setStatus(a, sel.value); });
-        head.appendChild(sel);
-        card.appendChild(head);
-
-        if (a.note) card.appendChild(el('div', 'app-note', a.note));
-
-        var act = el('div', 'app-actions');
-        var m = messageFor(a);
-        if (m) act.appendChild(makeCopy(m.label, m.text));
-        if (a.url){
-          var lk = el('a', null, 'Ouvrir le lien ↗');
-          lk.href = a.url; lk.target = '_blank'; lk.rel = 'noopener noreferrer';
-          act.appendChild(lk);
-        }
-        var ed = btn('linkbtn', 'Modifier');
-        ed.addEventListener('click', function(){ openForm(a); });
-        act.appendChild(ed);
-        var del = btn('linkbtn danger', 'Supprimer');
-        del.addEventListener('click', function(){ removeApp(a); });
-        act.appendChild(del);
-        card.appendChild(act);
-        listEl.appendChild(card);
-      });
-    }
-
-    function openForm(a){
-      editing = a || null;
-      fErr.hidden = true;
-      $('trkFormTitle').textContent = a ? 'Modifier la candidature' : 'Nouvelle candidature';
-      fCompany.value = a ? a.company : '';
-      fRole.value = a ? a.role : '';
-      fCity.value = a ? a.city : (S.city || '');
-      fStatus.value = a ? a.status : 'sent';
-      fDate.value = a ? a.date : today();
-      fUrl.value = a ? a.url : '';
-      fNote.value = a ? a.note : '';
-      form.hidden = false; addBtn.hidden = true;
-      form.scrollIntoView({block:'nearest'});
-      fCompany.focus();
-    }
-    function closeForm(){
-      form.hidden = true; addBtn.hidden = false; editing = null; fErr.hidden = true;
-    }
-    addBtn.addEventListener('click', function(){ openForm(null); });
-    $('trkCancel').addEventListener('click', function(){ closeForm(); addBtn.focus(); });
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      if (!fCompany.value.trim()){
-        fErr.textContent = 'Indique au moins le nom de l\'entreprise.'; fErr.hidden = false; fCompany.focus(); return;
-      }
-      if (fUrl.value.trim() && !safeUrl(fUrl.value)){
-        fErr.textContent = 'Le lien doit être une adresse web (https://…).'; fErr.hidden = false; fUrl.focus(); return;
-      }
-      var data = cleanApp({
-        id: editing ? editing.id : newId(), company: fCompany.value, role: fRole.value, city: fCity.value,
-        url: fUrl.value, status: fStatus.value, date: fDate.value, note: fNote.value,
-        created: editing ? editing.created : today(),
-        updated: (editing && editing.status === fStatus.value) ? editing.updated : today(),
-        mode: editing ? editing.mode : S.mode
-      });
-      if (data.status !== 'todo' && !data.date) data.date = today();
-      if (editing){
-        var i = T.apps.indexOf(editing);
-        if (i >= 0) T.apps[i] = data; else T.apps.push(data);
-      } else {
-        T.apps.push(data);
-      }
-      var wasEditing = !!editing;
-      saveT(); closeForm(); renderTracker(); renderTargets();
-      flash(wasEditing ? 'Candidature mise à jour.' : '« ' + data.company + ' » ajoutée au suivi.');
-      addBtn.focus();
-    });
-    form.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ e.stopPropagation(); closeForm(); addBtn.focus(); } });
-
-    /* export / sauvegarde / restauration */
-    function download(name, blob){
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url; a.download = name; document.body.appendChild(a); a.click();
-      setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
-    }
-    function csvCell(v){
-      v = String(v == null ? '' : v);
-      if (/^[=+\-@]/.test(v)) v = '\'' + v;          // pas de formule exécutée par Excel
-      if (/[";\n\r]/.test(v)) v = '"' + v.replace(/"/g, '""') + '"';
-      return v;
-    }
-    $('trkCsv').addEventListener('click', function(){
-      if (!T.apps.length){ flash('Rien à exporter pour l\'instant.'); return; }
-      var head = ['Entreprise','Poste','Ville','Statut','Type','Date d\'envoi','Mise à jour','Lien','Note'];
-      var rows = T.apps.map(function(a){
-        return [a.company, a.role, a.city, STATUS_LABEL[a.status], a.mode === 'job' ? 'Job' : 'Alternance',
-                a.date, a.updated, a.url, a.note].map(csvCell).join(';');
-      });
-      download('candidatures-' + today() + '.csv',
-        new Blob(['﻿' + [head.join(';')].concat(rows).join('\r\n')], {type:'text/csv;charset=utf-8'}));
-    });
-    $('trkSave').addEventListener('click', function(){
-      if (!T.apps.length){ flash('Rien à sauvegarder pour l\'instant.'); return; }
-      var data = {app:'chasseur-alternance', version:1, exported:new Date().toISOString(), apps:T.apps};
-      download('chasseur-suivi-' + today() + '.json', new Blob([JSON.stringify(data, null, 2)], {type:'application/json'}));
-    });
-    $('trkLoad').addEventListener('click', function(){ $('trkFile').click(); });
-    $('trkFile').addEventListener('change', function(){
-      var file = this.files && this.files[0];
-      this.value = '';
-      if (!file) return;
-      if (file.size > 2000000){ flash('Fichier trop lourd pour une sauvegarde du suivi.'); return; }
-      var reader = new FileReader();
-      reader.onload = function(){
-        var raw;
-        try { raw = JSON.parse(reader.result); } catch (e) { flash('Ce fichier n\'est pas une sauvegarde lisible.'); return; }
-        var list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.apps) ? raw.apps : null);
-        if (!list){ flash('Ce fichier n\'est pas une sauvegarde du suivi.'); return; }
-        var added = 0, updated = 0;
-        list.map(cleanApp).filter(Boolean).forEach(function(x){
-          var ex = T.apps.filter(function(a){ return a.id === x.id; })[0];
-          if (!ex){ T.apps.push(x); added++; }
-          else if (x.updated > ex.updated){ T.apps[T.apps.indexOf(ex)] = x; updated++; }
-        });
-        saveT(); renderTracker(); renderTargets();
-        flash(added + ' candidature' + (added > 1 ? 's' : '') + ' ajoutée' + (added > 1 ? 's' : '')
-              + (updated ? ', ' + updated + ' mise' + (updated > 1 ? 's' : '') + ' à jour' : '') + '.');
-      };
-      reader.readAsText(file);
-    });
-    if (!storageOk){
-      $('trkStore').textContent = 'Ce navigateur ne garde rien (navigation privée ?) : sauvegarde ton suivi en fichier avant de fermer la page.';
-    }
-
-    /* ---------- SOMMAIRE ---------- */
-    Array.prototype.forEach.call(document.querySelectorAll('.toc a'), function(a){
-      a.addEventListener('click', function(e){
-        var target = document.querySelector(a.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();   // garde l'URL propre (#job reste #job)
-        target.scrollIntoView({block:'start'});
-      });
-    });
-
-    /* ---------- THÈME ---------- */
-    var THEMES = ['auto','light','dark'], THEME_LABEL = {auto:'auto', light:'clair', dark:'sombre'};
-    var themeBtn = $('themeBtn');
-    var metas = Array.prototype.slice.call(document.querySelectorAll('meta[name="theme-color"]'));
-    var metaDefaults = metas.map(function(m){ return m.getAttribute('content'); });
-    function currentTheme(){ var t = document.documentElement.getAttribute('data-theme'); return t === 'light' || t === 'dark' ? t : 'auto'; }
-    function applyTheme(t){
-      if (t === 'auto') document.documentElement.removeAttribute('data-theme');
-      else document.documentElement.setAttribute('data-theme', t);
-      metas.forEach(function(m, i){ m.setAttribute('content', t === 'auto' ? metaDefaults[i] : (t === 'dark' ? '#1c1915' : '#fbf7ef')); });
-      themeBtn.textContent = 'Thème : ' + THEME_LABEL[t];
-      try { if (t === 'auto') localStorage.removeItem('chasseur.theme'); else localStorage.setItem('chasseur.theme', t); } catch (e) {}
-    }
-    themeBtn.addEventListener('click', function(){ applyTheme(THEMES[(THEMES.indexOf(currentTheme()) + 1) % THEMES.length]); });
-    applyTheme(currentTheme());
-
-    /* ---------- BASCULE ALTERNANCE / JOB ---------- */
-    var modeBtns = Array.prototype.slice.call(document.querySelectorAll('.mode'));
-    function applyMode(){
-      var M = MODES[S.mode];
-      $('eyebrow').textContent = M.eyebrow;
-      $('h1em').textContent = M.title;
-      $('lede').textContent = M.lede;
-      document.title = M.doc;
-      modeBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-mode') === S.mode ? 'true' : 'false'); });
-      err.hidden = true;
-      renderPresets(); renderTags(); renderPlatforms(); checkWarn();
-      clearResults();
-      if (cur().generated) generate(true);
-    }
-    function setMode(m){
-      if (m === S.mode || !MODES[m]) return;
-      S.mode = m; save();
-      try { history.replaceState(null, '', m === 'job' ? '#job' : location.pathname + location.search); } catch (e) {}
-      applyMode();
-    }
-    modeBtns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode')); }); });
-    window.addEventListener('hashchange', function(){ var m = modeFromHash(); if (m) setMode(m); });
-
-    /* ---------- DÉMARRAGE ---------- */
-    updateCityLabel(); updateRecent(); renderCities('');
-    renderTargetFilters(); renderTargets(); renderTracker();
-    applyMode();
-    if (sharedLoaded && current.length) results.scrollIntoView({block:'start'});
-
-  } catch (e) {
-    var box = document.createElement('div');
-    box.style.cssText = 'border:1px solid #8a6c34;padding:14px;margin:20px;font-family:monospace';
-    box.textContent = 'L\'outil n\'a pas pu démarrer : ' + e.message;
-    document.body.appendChild(box);
-  }
-});
-
-fetch('https://fancy-waterfall-6c38.adamfast-as.workers.dev/ping', { method: 'POST' }).catch(()=>{});
-
-</script>
 </body>
 </html>
